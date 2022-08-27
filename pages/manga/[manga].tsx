@@ -43,6 +43,9 @@ function Manga({ data }: any) {
         <Layout>
             <Head>
                 <title>Neku | {manga}</title>
+                <meta name="description" content={BookInfo.MangaSynopsis} />
+                <meta property="og:image" content={BookInfo.MangaCover} />
+                <meta property="og:title" content={BookInfo.MangaTitle} />
             </Head>
 
             {!getData ? <DeadEnd /> : <Book
