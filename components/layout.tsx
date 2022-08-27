@@ -17,6 +17,8 @@ function Layout({ children }: Props) {
                 <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <meta name="author" content="Neku Devs" />
+                <meta property="og:image" content="/neku.ico" />
+                <meta name="description" content="Neku es un Manga reader enfocado en la simplicidad y facilidad para el usuario" />
             </Head>
 
             <Nav />
