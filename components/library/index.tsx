@@ -6,10 +6,10 @@ interface Target {
     MangaTitle: string
 }
 
-import BookManga from "./Manga"
+import BookManga from "./Cover"
 import EndManga from "../DeadEnd"
 
-function Books({ data }: any) {
+function Library({ data }: any) {
 
     data.length=10
 
@@ -19,7 +19,9 @@ function Books({ data }: any) {
 
             <div>
                 { data.data.map((target: Target) => {
-                    return <BookManga image={target.MangaCover} name={target.MangaTitle} key={target.MangaTitle} />
+                    if (target.MangaCover != undefined) {
+                        return <BookManga image={target.MangaCover} name={target.MangaTitle} key={target.MangaTitle} />
+                    }
                 })}
             </div>
 
@@ -28,4 +30,4 @@ function Books({ data }: any) {
     )
 }
 
-export default Books
+export default Library

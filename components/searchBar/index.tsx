@@ -1,16 +1,21 @@
 
+import { FormEvent } from "react"
 import { MdOutlineSearch } from "react-icons/md"
 import style from "./searchBar.module.scss"
 
 function SearchBar() {
+
+    function getForm(e:FormEvent) {
+        e.preventDefault()
+    }
+
     return (
         <div className={style.searchBar}>
 
             <h2>¿Qué leeras hoy?</h2>
-            <form>
+            <form onSubmit={getForm}>
                 <input type="text" />
                 <button type="submit"><MdOutlineSearch /></button>
-
             </form>
             <span>
                 <p>Nuevo</p>

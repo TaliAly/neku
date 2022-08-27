@@ -1,4 +1,4 @@
-import style from "./Manga.module.scss"
+import style from "./Cover.module.scss"
 import Link from "next/link"
 
 

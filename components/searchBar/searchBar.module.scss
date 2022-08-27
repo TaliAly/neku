@@ -13,11 +13,14 @@
     form {
         display: inline-flex;
         align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 10px;
 
     }
 
 
+    // Search Input
     input {
         height: 4rem;
         width: clamp(300px, 65vw, 700px);
@@ -38,6 +41,8 @@
         }
     }
 
+
+    // Submit Button
     button {
         &:hover {
             background-color: #4b429c;
@@ -60,13 +65,12 @@
 
     }
 
-    textarea {
-        outline: none;
-    }
-
+    // List of things
     span {
         display: flex;
-        gap: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px 10px;
         font-weight: 400;
 
         p {

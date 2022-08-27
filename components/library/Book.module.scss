@@ -1,0 +1,24 @@
+.book {
+    display: flex;
+    gap: 20px;
+
+    img {
+        border-radius: 10px;
+    }
+
+    span {
+        display: flex;
+        flex-direction: column;
+
+        h2 {
+            font-size: 42px;
+        }
+        p {
+            background-color: var(--bg-dark-comp);
+            padding: .4rem;
+            border-radius: 10px;
+            width:60%;
+        }
+    }
+
+}

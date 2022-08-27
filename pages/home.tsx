@@ -3,7 +3,7 @@ import Head from 'next/head'
 
 import Layout from '../components/layout'
 import SearchBar from '../components/searchBar'
-import Mangas from '../components/books'
+import Mangas from '../components/library'
 import style from "./../styles/index.module.scss"
 
 const Home: NextPage = ({ data }: any) => {
@@ -32,8 +32,7 @@ export async function getServerSideProps() {
   const options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': 'bdff903274msh4d7467043c52ac6p1d8499jsn877c34ee4d56',
-      'X-RapidAPI-Host': 'manga-scrapper.p.rapidapi.com'
+      'X-RapidAPI-Key': `${process.env.manga_scrapper_key}`,
     }
   };
 

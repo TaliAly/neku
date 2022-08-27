@@ -3,8 +3,9 @@
 
 :root {
   --bg-dark: #14141f;
+  --bg-dark-comp: #1d1d2e;
   --color: #fff;
-  --color-fg: #444469;
+  --fg-dark: #444469;
 }
 
 
@@ -19,6 +20,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    line-height: 1.4;
 }
 
 
