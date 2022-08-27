@@ -39,11 +39,16 @@
     }
 
     button {
+        &:hover {
+            background-color: #4b429c;
+        }
+
+        transition: background-color .1s ease;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        background-color: rgb(63, 56, 128);
+        background-color: #3f3880;
         color:#fff;
         font-size: 55px;
         width: 58px;

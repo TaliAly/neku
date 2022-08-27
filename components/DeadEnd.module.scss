@@ -1,0 +1,15 @@
+.deadend {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-fg);
+
+    svg {
+        path {
+            pointer-events: none;
+        }
+
+        font-size: 100px;
+    }
+}

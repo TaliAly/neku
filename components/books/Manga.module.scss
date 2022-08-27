@@ -1,0 +1,33 @@
+.book {
+    &:hover {
+        filter: brightness(1.2);
+        cursor: pointer;
+
+        h4 {
+            font-weight: 600;
+        }
+    }
+    transition: filter .1s ease, font-weight .1s ease;
+
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    height: 325px;
+    text-align: center;
+
+    img {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    h4 {
+        margin: .4rem;
+        font-weight: normal;
+    }
+}

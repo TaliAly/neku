@@ -4,6 +4,7 @@ import Layout from "../components/layout"
 import style from "../styles/index.module.scss"
 
 import SearchBar from "../components/searchBar"
+import About from "../components/info"
 
 
 function index() {
@@ -21,11 +22,9 @@ function index() {
             <Layout>
                 <div className={style.landing}>
                     <SearchBar />
+                    <About />
                 </div>
 
-                <div>
-                    <h2>Qué es Neku</h2>
-                </div>
             </Layout>
         </div>
     )

@@ -1,3 +1,18 @@
+
+/* Colors */
+
+:root {
+  --bg-dark: #14141f;
+  --color: #fff;
+  --color-fg: #444469;
+}
+
+
+
+
+
+
+
 html,
 body {
   padding: 0;
