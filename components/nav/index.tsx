@@ -15,7 +15,7 @@ export default function Nav() {
 
     return (
         <nav className={style.nav}>
-            <Link href="/"><a> <img src="neku.ico" alt="neku" /><h1>Neku</h1></a></Link>
+            <Link href="/"><a> <img src="/neku.ico" alt="neku" /><h1>Neku</h1></a></Link>
 
             {responsive &&
                 <div>

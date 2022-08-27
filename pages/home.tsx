@@ -27,11 +27,10 @@ const Home: NextPage = ({ data }: any) => {
 }
 
 
-export async function getServerSideProps<GetServerSideProps>() {
+export async function getServerSideProps() {
 
   const options = {
     method: 'GET',
-    url: 'https://manga-scrapper.p.rapidapi.com/fetch/manga-provider',
     headers: {
       'X-RapidAPI-Key': 'bdff903274msh4d7467043c52ac6p1d8499jsn877c34ee4d56',
       'X-RapidAPI-Host': 'manga-scrapper.p.rapidapi.com'
