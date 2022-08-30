@@ -1,13 +1,16 @@
 .manga {
     display: block;
-    margin-left:auto;
+    margin-left: auto;
     margin-right: auto;
+    height: auto;
     width: 80%;
 
-    div {
-        gap: 1rem;
-        display: flex;
-        flex-wrap: wrap;
+    .library {
+        gap: .7rem;
+        display: grid;
+        place-items: center;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        align-items: center;
     }
 
     h2 {

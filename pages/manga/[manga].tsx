@@ -6,19 +6,26 @@ import { useEffect, useState } from "react";
 import Book from "../../components/library/Book";
 
 
+interface BookInfo {
+    title: string,
+    background: string,
+    images: {
+        webp: {
+            image_url: string,
+            small_image_url: string,
+        }
+    }
+}
+
+
 export async function getServerSideProps(context: any) {
 
     const { manga } = context.query;
-    const search = manga.toLowerCase().replaceAll(" ", "-").replaceAll(/\'|’/g, "")
-
     const options = {
         method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': `${process.env.manga_scrapper_key}`,
-            'X-RapidAPI-Host': 'manga-scrapper.p.rapidapi.com'
-        }
     };
-    const res = await fetch(`https://manga-scrapper.p.rapidapi.com/fetch/manga/asura/${search}`, options)
+
+    const res = await fetch(`https://api.jikan.moe/v4/manga/${manga}`, options)
     const data = await res.json()
     return { props: { data } }
 
@@ -28,10 +35,11 @@ export async function getServerSideProps(context: any) {
 function Manga({ data }: any) {
 
     const [getData, setGetData] = useState(false);
-    const BookInfo = data.data
+    const BookInfo: BookInfo = data.data
+    console.log(data)
 
     useEffect(() => {
-        if (data.status == 200) {
+        if (data.status != 404) {
             setGetData(true);
         }
     }, [])
@@ -41,17 +49,20 @@ function Manga({ data }: any) {
 
     return (
         <Layout>
-            <Head>
-                <title>Neku | {manga}</title>
-                <meta name="description" content={BookInfo.MangaSynopsis} />
-                <meta property="og:image" content={BookInfo.MangaCover} />
-                <meta property="og:title" content={BookInfo.MangaTitle} />
-            </Head>
+            {!getData ? <DeadEnd /> :
+                <>
+                    <Head>
+                        <title>Neku | {manga}</title>
+                        <meta name="description" content={BookInfo.background} />
+                        <meta property="og:image" content={BookInfo.images.webp.image_url} />
+                        <meta property="og:title" content={BookInfo.title} />
+                    </Head>
 
-            {!getData ? <DeadEnd /> : <Book
-                MangaCover={BookInfo.MangaCover}
-                MangaSynopsis={BookInfo.MangaSynopsis}
-                MangaTitle={BookInfo.MangaTitle} />
+                    <Book
+                        MangaCover={BookInfo.images.webp.image_url}
+                        MangaSynopsis={BookInfo.background}
+                        MangaTitle={BookInfo.title} />
+                </>
             }
 
         </Layout>

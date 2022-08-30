@@ -1,12 +1,16 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import dynamic from 'next/dynamic'
+import { useState } from 'react'
+import style from "./../styles/index.module.scss"
+
 
 import Layout from '../components/layout'
 import SearchBar from '../components/searchBar'
 import Mangas from '../components/library'
-import style from "./../styles/index.module.scss"
 
 const Home: NextPage = ({ data }: any) => {
+  const [getData, setGetData] = useState(data.data)
 
   return (
     <div>
@@ -17,7 +21,9 @@ const Home: NextPage = ({ data }: any) => {
       <Layout>
         <div className={style.landing}>
           <SearchBar />
-          <Mangas data={data} />
+
+          { (data.status != 400) && <Mangas data={getData} /> }
+
         </div>
       </Layout>
 
@@ -31,12 +37,9 @@ export async function getServerSideProps() {
 
   const options = {
     method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': `${process.env.manga_scrapper_key}`,
-    }
   };
-
-  const res = await fetch("https://manga-scrapper.p.rapidapi.com/fetch/manga-list/asura", options)
+  
+  const res = await fetch('https://api.jikan.moe/v4/top/manga', options)
   const data = await res.json()
 
   return { props: { data } }
