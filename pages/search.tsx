@@ -20,7 +20,6 @@ function Search({ data }:any ) {
     const router = useRouter()
 
     useEffect( () => {
-        console.log("hey");
         setGetData(data.data)
         
     }, [data])
@@ -29,7 +28,7 @@ function Search({ data }:any ) {
         <div>
             <Head>
                 <title>Search "{query.search}"</title>
-                <meta name="description" content={`Buscaste por ${query.search}!`} />
+                <meta name="description" content={`Buscaste por ${query.search?.toString()}!`} />
             </Head>
 
             <Layout>
