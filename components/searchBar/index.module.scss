@@ -1,0 +1,60 @@
+.searchBar {
+
+    margin: 1.5rem 1rem;
+    display: flex;
+
+    form {
+        display: inline-flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+
+    }
+
+
+    // Search Input
+    input {
+        height: 2rem;
+        width: clamp(100px, 65vw, 300px);
+        border-radius: 65px;
+        padding: 0 1.5rem;
+        font-size: 14px;
+
+        --clr: #287bda;
+        --outline: 0px solid var(--clr);
+        outline: var(--outline);
+        border: var(--outline);
+        outline-offset: -1px;
+        transition: outline-offset 100ms ease;
+
+        &:focus, &:hover{
+            outline: 2px solid var(--clr);
+            outline-offset: 2px;
+        }
+    }
+
+
+    // Submit Button
+    button {
+        &:hover {
+            background-color: #4b429c;
+        }
+
+        transition: background-color .1s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        background-color: #3f3880;
+        color:#fff;
+        font-size: 25px;
+        width: 35px;
+        height: 35px;
+        
+        
+        border: none;
+        border-radius: 100%;
+
+    }
+}

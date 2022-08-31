@@ -1,28 +1,30 @@
 
-import { FormEvent } from "react"
+import { FormEvent, useRef } from "react"
 import { MdOutlineSearch } from "react-icons/md"
-import style from "./searchBar.module.scss"
+import style from "./index.module.scss"
+import { useRouter } from "next/router"
+
 
 function SearchBar() {
 
+    const router = useRouter()
+    const queryInput = useRef<HTMLInputElement>(null)
+
     function getForm(e:FormEvent) {
         e.preventDefault()
+        router.push({
+            pathname: "/search",
+            query: { search: `${queryInput.current?.value}`}
+        })
     }
 
     return (
         <div className={style.searchBar}>
 
-            <h2>¿Qué leeras hoy?</h2>
             <form onSubmit={getForm}>
-                <input type="text" />
                 <button type="submit"><MdOutlineSearch /></button>
+                <input type="text" ref={queryInput} />
             </form>
-            <span>
-                <p>Nuevo</p>
-                <p>Random</p>
-                <p>A-Z</p>
-                <p>Completos</p>
-            </span>
         </div>
     )
 }

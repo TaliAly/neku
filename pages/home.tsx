@@ -1,13 +1,12 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import style from "./../styles/index.module.scss"
 
 
 import Layout from '../components/layout'
-import SearchBar from '../components/searchBar'
-import Mangas from '../components/library'
+import SearchBarBig from '../components/searchBar/searchBarBig'
+import Library from '../components/library'
 
 const Home: NextPage = ({ data }: any) => {
   const [getData, setGetData] = useState(data.data)
@@ -20,9 +19,9 @@ const Home: NextPage = ({ data }: any) => {
 
       <Layout>
         <div className={style.landing}>
-          <SearchBar />
+          <SearchBarBig />
 
-          { (data.status != 400) && <Mangas data={getData} /> }
+          { (data.status != 400) && <Library data={getData} /> }
 
         </div>
       </Layout>

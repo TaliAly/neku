@@ -3,7 +3,7 @@ import Head from "next/head"
 import Layout from "../components/layout"
 import style from "../styles/index.module.scss"
 
-import SearchBar from "../components/searchBar"
+import SearchBarBig from '../components/searchBar/searchBarBig'
 import About from "../components/info"
 
 
@@ -16,7 +16,7 @@ function index() {
 
             <Layout>
                 <div className={style.landing}>
-                    <SearchBar />
+                    <SearchBarBig />
                     <About />
                 </div>
 

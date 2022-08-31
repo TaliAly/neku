@@ -15,6 +15,11 @@ interface BookInfo {
             small_image_url: string,
         }
     }
+    synopsis: string,
+    genres: {
+        mal_id:string,
+        name:string
+    }[]
 }
 
 
@@ -60,8 +65,10 @@ function Manga({ data }: any) {
 
                     <Book
                         MangaCover={BookInfo.images.webp.image_url}
-                        MangaSynopsis={BookInfo.background}
-                        MangaTitle={BookInfo.title} />
+                        MangaSynopsis={BookInfo.synopsis}
+                        MangaTitle={BookInfo.title}
+                        Genres={BookInfo.genres}
+                        />
                 </>
             }
 

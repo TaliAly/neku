@@ -19,7 +19,6 @@ function Library({ data }: any) {
 
     return (
         <div className={style.manga}>
-            <h2>Tops</h2>
 
             <div className={style.library}>
                 {data.map(({mal_id, title, images}: Target) => {
@@ -27,7 +26,6 @@ function Library({ data }: any) {
                 })}
             </div>
 
-            <EndManga />
         </div>
     )
 }
