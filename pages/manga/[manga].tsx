@@ -45,7 +45,6 @@ function Manga({ data }: any) {
 
     const [getData, setGetData] = useState(false);
     const BookInfo: BookInfo = data.data
-    console.log(data)
 
     useEffect(() => {
         if (data.status != 404) {
