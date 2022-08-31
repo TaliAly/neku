@@ -17,7 +17,7 @@ function Search({ data }:any ) {
     const [getData, setGetData] = useState(data.data);
 
     const {query} = useRouter()
-    const router = useRouter()
+    
 
     useEffect( () => {
         setGetData(data.data)
@@ -27,8 +27,8 @@ function Search({ data }:any ) {
     return (
         <div>
             <Head>
-                <title>Search "{query.search}"</title>
-                {/* <meta name="description" content={`Buscaste por ${query.search?.toString()}!`} /> */}
+                <title>Buscar {`${query.search}`}</title>
+                <meta name="description" content={`Buscaste por ${query.search?.toString()}!`} />
             </Head>
 
             <Layout>
@@ -56,8 +56,9 @@ export const getServerSideProps: GetServerSideProps = async context => {
     const options = {
         method: "GET",
     }
+    const search = context.query.search?.toString().replaceAll(" ", "+")
 
-    const req = await fetch(`https://api.jikan.moe/v4/manga?q=${context.query.search}&order_by=rank&type=manga`, options);
+    const req = await fetch(`https://api.jikan.moe/v4/manga?q=${search}&order_by=popularity&type=manga&sfw=true`, options);
     const data = await req.json();
 
     return {

@@ -2,11 +2,12 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useState } from 'react'
 import style from "./../styles/index.module.scss"
+import dynamic from 'next/dynamic'
 
 
 import Layout from '../components/layout'
 import SearchBarBig from '../components/searchBar/searchBarBig'
-import Library from '../components/library'
+const Library = dynamic(() => import("../components/library"))
 
 const Home: NextPage = ({ data }: any) => {
   const [getData, setGetData] = useState(data.data)

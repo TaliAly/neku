@@ -1,9 +1,13 @@
 import { useRouter } from "next/router";
-import Layout from "../../components/layout";
+import { GetServerSideProps } from "next";
+import { useEffect, useState } from "react";
+
+// Components
 import Head from "next/head";
 import DeadEnd from "../../components/DeadEnd"
-import { useEffect, useState } from "react";
+import Layout from "../../components/layout";
 import Book from "../../components/library/Book";
+import SearchBar from "../../components/searchBar"
 
 
 interface BookInfo {
@@ -17,13 +21,13 @@ interface BookInfo {
     }
     synopsis: string,
     genres: {
-        mal_id:string,
-        name:string
+        mal_id: string,
+        name: string
     }[]
 }
 
 
-export async function getServerSideProps(context: any) {
+export const getServerSideProps: GetServerSideProps = async context => {
 
     const { manga } = context.query;
     const options = {
@@ -58,17 +62,20 @@ function Manga({ data }: any) {
                 <>
                     <Head>
                         <title>Neku | {manga}</title>
-                        <meta name="description" content={BookInfo.background} />
+                        <meta name="description" content={BookInfo.synopsis} />
                         <meta property="og:image" content={BookInfo.images.webp.image_url} />
                         <meta property="og:title" content={BookInfo.title} />
+                        <meta property="og:type" content={BookInfo.title} />
+                        <meta property="og:url" content={router.pathname} />
                     </Head>
 
+                    <SearchBar />
                     <Book
                         MangaCover={BookInfo.images.webp.image_url}
                         MangaSynopsis={BookInfo.synopsis}
                         MangaTitle={BookInfo.title}
                         Genres={BookInfo.genres}
-                        />
+                    />
                 </>
             }
 
