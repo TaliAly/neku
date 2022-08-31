@@ -28,7 +28,7 @@ function Search({ data }:any ) {
         <div>
             <Head>
                 <title>Search "{query.search}"</title>
-                <meta name="description" content={`Buscaste por ${query.search?.toString()}!`} />
+                {/* <meta name="description" content={`Buscaste por ${query.search?.toString()}!`} /> */}
             </Head>
 
             <Layout>
