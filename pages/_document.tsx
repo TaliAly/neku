@@ -17,7 +17,7 @@ export default function Document() {
 
 
                 <meta name="og:title" content="Neku" />
-                <meta name="og:url" content="https://neku-ne0rbz5ek-talialy.vercel.app/" />
+                <meta name="og:url" content="https://neku-murex.vercel.app/" />
                 <meta name="og:site_name" content="Neku" />
                 <meta
                     name="og:description"
