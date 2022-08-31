@@ -12,23 +12,32 @@ import Head from "next/head"
 import SearchBar from "../components/searchBar"
 
 
-function Search({ data }:any ) {
+function Search({ data }: any) {
 
     const [getData, setGetData] = useState(data.data);
 
-    const {query} = useRouter()
-    
+    const { query } = useRouter()
 
-    useEffect( () => {
+
+    useEffect(() => {
         setGetData(data.data)
-        
+
     }, [data])
 
     return (
         <div>
             <Head>
                 <title>Buscar {`${query.search}`}</title>
-                <meta name="description" content={`Buscaste por ${query.search?.toString()}!`} />
+                <meta
+                    name="og:description"
+                    content={`Buscaste por ${query.search?.toString()}!`}
+                />
+                <meta name="og:title" content={`Buscando...`} />
+                <meta name="og:url" content="https://neku-murex.vercel.app/" />
+                <meta name="og:site_name" content="Neku" />
+                <meta property="og:image" content="https://i.imgur.com/vI4DCKd.png" />
+                <meta property="og:image:width" content="500" />
+                <meta property="og:image:height" content="500" />
             </Head>
 
             <Layout>

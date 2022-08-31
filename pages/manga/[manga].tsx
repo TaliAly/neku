@@ -61,11 +61,18 @@ function Manga({ data }: any) {
                 <>
                     <Head>
                         <title>Neku | {manga}</title>
-                        <meta name="description" content={BookInfo.synopsis} />
+
+                        <meta name="og:title" content={`Neku | ${manga}`} />
+                        <meta name="og:url" content="https://neku-murex.vercel.app/" />
+                        <meta name="og:site_name" content="Neku" />
+                        <meta
+                            name="og:description"
+                            content={BookInfo.synopsis}
+                        />
                         <meta property="og:image" content={BookInfo.images.webp.image_url} />
-                        <meta property="og:title" content={BookInfo.title} />
-                        <meta property="og:type" content={BookInfo.title} />
-                        <meta property="og:url" content={router.pathname} />
+                        <meta property="og:image:width" content="500" />
+                        <meta property="og:image:height" content="500" />
+
                     </Head>
 
                     <SearchBar />

@@ -10,6 +10,7 @@ export default function Document() {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <meta name="author" content="Neku Team" />
                 <meta name="title" content="Neku" />
+                <link rel="shortcut icon" href="/neku.ico" type="image/x-icon" />
                 <meta
                     name="description"
                     content="Neku Manga es un lector de manga enfocado en la simplicidad y darte una buena calidad mientras lees lo que a ti más te gusta"
