@@ -39,7 +39,6 @@ function Config() {
         <div>
             <IoSettings onClick={() => { setOpenModal(!openModal) }} />
             {openModal && <Modal setCloseModal={setOpenModal} />}
-            <p></p>
         </div>
     )
 }
