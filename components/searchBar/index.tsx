@@ -20,7 +20,6 @@ function SearchBar() {
 
     return (
         <div className={style.searchBar}>
-
             <form onSubmit={getForm}>
                 <button type="submit"><MdOutlineSearch /></button>
                 <input type="text" ref={queryInput} />

@@ -26,18 +26,19 @@
         width: clamp(200px, 65vw, 700px);
         border-radius: 65px;
         padding: 0 1.5rem;
-        font-size: 20px;
+        font-size: 23px;
 
         --clr: #287bda;
         --outline: 0px solid var(--clr);
         outline: var(--outline);
-        border: var(--outline);
+        border: 2px solid var(--clr);
         outline-offset: -1px;
         transition: outline-offset 100ms ease;
 
         &:focus, &:hover{
             outline: 2px solid var(--clr);
             outline-offset: 2px;
+            border: none;
         }
     }
 

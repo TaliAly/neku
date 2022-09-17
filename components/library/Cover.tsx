@@ -7,14 +7,14 @@ import Image from "next/image"
 interface Props {
     image: string,
     name: string,
-    mangaId:string,
+    mal_id:string,
 }
 
-function BookManga(props: Props) {
+function Cover(props: Props) {
 
 
     return (
-        <Link href={`/manga/${props.mangaId}`}>
+        <Link href={`/manga/${props.mal_id}`}>
             <a>
                 <div className={style.book}>
                     <span>
@@ -30,4 +30,4 @@ function BookManga(props: Props) {
     )
 }
 
-export default BookManga
+export default Cover

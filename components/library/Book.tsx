@@ -1,10 +1,10 @@
 import style from "./Book.module.scss"
 
 interface Props {
-    MangaCover: string,
-    MangaSynopsis: string,
-    MangaTitle: string,
-    Genres: {
+    cover: string,
+    synopsis: string,
+    title: string,
+    genres: {
         mal_id: string,
         name: string
     }[]
@@ -12,20 +12,20 @@ interface Props {
 }
 
 
-function Book({ MangaCover, MangaSynopsis, MangaTitle, Genres }: Props) {
+function Book({ genres, cover, synopsis, title }: Props) {
     return (
         <div className={style.book}>
             <span className={style.images}>
-                <img src={MangaCover} alt={MangaTitle} width={200} height={300} />
-                <div>{ Genres.map( ({mal_id, name}) => {
+                <img src={cover} alt={title} width={200} height={300} />
+                <div>{ genres.map( ({mal_id, name}) => {
                     return <p key={mal_id}>{name}</p>
                 })}
                 </div>
             </span>
 
             <span>
-                <h2>{MangaTitle}</h2>
-                <p>{MangaSynopsis}</p>
+                <h2>{title}</h2>
+                <p>{synopsis}</p>
             </span>
         </div>
     )

@@ -4,27 +4,10 @@ import { useEffect, useState } from "react";
 
 // Components
 import Head from "next/head";
-import DeadEnd from "../../components/DeadEnd"
+import DeadEnd from "../../components/DeadEnd";
 import Layout from "../../components/layout";
 import Book from "../../components/library/Book";
-import SearchBar from "../../components/searchBar"
-
-
-interface BookInfo {
-    title: string,
-    background: string,
-    images: {
-        webp: {
-            image_url: string,
-            small_image_url: string,
-        }
-    }
-    synopsis: string,
-    genres: {
-        mal_id: string,
-        name: string
-    }[]
-}
+import { BookInfo } from "../../components/Type";
 
 
 export const getServerSideProps: GetServerSideProps = async context => {
@@ -75,12 +58,11 @@ function Manga({ data }: any) {
 
                     </Head>
 
-                    <SearchBar />
                     <Book
-                        MangaCover={BookInfo.images.webp.image_url}
-                        MangaSynopsis={BookInfo.synopsis}
-                        MangaTitle={BookInfo.title}
-                        Genres={BookInfo.genres}
+                        cover={BookInfo.images.webp.image_url}
+                        synopsis={BookInfo.synopsis}
+                        title={BookInfo.title}
+                        genres={BookInfo.genres}
                     />
                 </>
             }

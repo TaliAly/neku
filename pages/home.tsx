@@ -1,6 +1,5 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useState } from 'react'
 import style from "./../styles/index.module.scss"
 import dynamic from 'next/dynamic'
 
@@ -10,7 +9,6 @@ import SearchBarBig from '../components/searchBar/searchBarBig'
 const Library = dynamic(() => import("../components/library"))
 
 const Home: NextPage = ({ data }: any) => {
-  const [getData, setGetData] = useState(data.data)
 
   return (
     <div>
@@ -22,7 +20,7 @@ const Home: NextPage = ({ data }: any) => {
         <div className={style.landing}>
           <SearchBarBig />
 
-          { (data.status != 400) && <Library data={getData} /> }
+          { (data.status != 400) && <Library data={data.data} /> }
 
         </div>
       </Layout>

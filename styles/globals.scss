@@ -2,16 +2,17 @@
 /* Colors */
 
 :root {
+  --bg: #fdfdfd;
+
+
+  // For Dark Theme
   --bg-dark: #14141f;
   --bg-dark-comp: #1d1d2e;
-  --color: #fff;
+  --font: #1d1d1d;
+  --font-alt:#fefefe;
   --fg-dark: #444469;
+
 }
-
-
-
-
-
 
 
 html,
@@ -23,9 +24,10 @@ body {
     line-height: 1.4;
 }
 
-
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&display=swap');
-
+body.dark-mode {
+  background-color: var(--bg-dark);
+  color: var(--font-alt);
+}
 
 a {
   color: inherit;
@@ -34,7 +36,6 @@ a {
 
 * {
   box-sizing: border-box;
-  font-family: "Poppins", "Open sans", sans-serif;
 }
 
 /* @media (prefers-color-scheme: dark) {

@@ -1,8 +1,7 @@
-import Head from "next/head"
-
-import Layout from "../components/layout"
 import style from "../styles/index.module.scss"
 
+import Head from "next/head"
+import Layout from "../components/layout"
 import SearchBarBig from '../components/searchBar/searchBarBig'
 import News from "../components/info/news"
 import Info from "../components/info"

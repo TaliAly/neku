@@ -1,6 +1,6 @@
 .searchBar {
 
-    margin: 1.5rem 1rem;
+    margin: 0 1rem;
     display: flex;
 
     form {
@@ -18,19 +18,20 @@
         height: 2rem;
         width: clamp(100px, 65vw, 300px);
         border-radius: 65px;
-        padding: 0 1.5rem;
+        padding: 0 1rem;
         font-size: 14px;
 
         --clr: #287bda;
         --outline: 0px solid var(--clr);
         outline: var(--outline);
-        border: var(--outline);
+        border: 2px solid var(--clr);
         outline-offset: -1px;
         transition: outline-offset 100ms ease;
 
         &:focus, &:hover{
             outline: 2px solid var(--clr);
             outline-offset: 2px;
+            border: none;
         }
     }
 

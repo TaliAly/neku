@@ -1,19 +1,10 @@
 import style from "./index.module.scss"
 import dynamic from 'next/dynamic'
+import { Target } from "../Type"
 
-const BookManga = dynamic( () => import("./Cover"))
-const EndManga = dynamic(() => import('../DeadEnd'))
+const Cover = dynamic( () => import("./Cover"))
 
-interface Target {
-    mal_id: string,
-    title: string,
-    images: {
-        webp: {
-            image_url:string,
-            small_image_url:string,
-        }
-    }
-}
+
 
 function Library({ data }: any) {
 
@@ -22,7 +13,7 @@ function Library({ data }: any) {
 
             <div className={style.library}>
                 {data.map(({mal_id, title, images}: Target) => {
-                    return <BookManga image={images.webp.image_url} name={title} key={mal_id} mangaId={mal_id} />
+                    return <Cover image={images.webp.image_url} name={title} key={mal_id} mal_id={mal_id} />
                 })}
             </div>
 
