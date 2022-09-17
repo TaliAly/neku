@@ -7,7 +7,7 @@ import { BsFillMoonFill } from "react-icons/bs"
 import { useState, useRef } from "react"
 
 
-function Modal({setCloseModal}) {
+function Modal({setCloseModal}:any) {
 
     const { isEnabled, setIsEnabled } = useDarkMode();
     const ref = useRef(null);
@@ -39,6 +39,7 @@ function Config() {
         <div>
             <IoSettings onClick={() => { setOpenModal(!openModal) }} />
             {openModal && <Modal setCloseModal={setOpenModal} />}
+            <p></p>
         </div>
     )
 }
