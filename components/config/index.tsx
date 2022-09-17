@@ -12,7 +12,7 @@ function Modal({setCloseModal}:any) {
     const { isEnabled, setIsEnabled } = useDarkMode();
     const ref = useRef(null);
 
-    const handleClick = (target:EventListener) => {
+    const handleClick = (target:any) => {
 
         if ( !(target.target == ref.current || target.target.parentElement == ref.current) ) {
             setCloseModal(false);
