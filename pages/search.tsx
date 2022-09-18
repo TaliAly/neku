@@ -41,7 +41,6 @@ function Search({ data }: any) {
             </Head>
 
             <Layout>
-                <SearchBar />
 
                 {
                     (getData.length != 0)
