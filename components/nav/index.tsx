@@ -27,7 +27,7 @@ export default function Nav() {
                 }
                 <p><Link href="/home"><a><AiFillHome /></a></Link></p>
                 <p><AiFillBook /></p>
-                <p> <Config /> </p>
+                {/* <p> <Config /> </p> */}
             </div>
         </nav>
         )

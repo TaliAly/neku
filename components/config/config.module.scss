@@ -6,7 +6,7 @@
     height: 100vh;
     cursor: default;
 
-    div {
+    &>span {
         position: absolute;
         right: 10px;
         top: 70px;

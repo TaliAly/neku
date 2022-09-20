@@ -3,19 +3,22 @@ import Head from "next/head"
 import { GetStaticPaths, GetStaticProps } from 'next'
 
 import Layout from "../../components/layout"
-import Book from "../../components/library/Book"
-
+import Library from "../../components/library"
 
 export const getStaticPaths: GetStaticPaths = async () => {
 
-	const res = await fetch(`https://api.jikan.moe/v4/manga`)
+	const res = await fetch(`https://api.jikan.moe/v4/genres/manga`);
 	const data = await res.json();
 
-	const paths = data.data.map(({ mal_id, name }:any) => {
+
+	console.table(data)
+
+	const paths = data.data.map( ( {name, mal_id} ) => {
 		return {
-			params: { genres: `${mal_id}`, name: `${name}` },
+			params: { genres: `${name}`, id: mal_id },
 		}
 	})
+	console.table(paths);
 
 	return {
 		paths, fallback:false
@@ -24,14 +27,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps:GetStaticProps = async (context) => {
 
-	const res = await fetch(`https://api.jikan.moe/v4/manga?genres=${context.params.data}`)
+	const res = await fetch(`https://api.jikan.moe/v4/manga?genres=${context.params?.mal_id}`)
 	const data = await res.json();
-	const names = context.params.name
 
 	return {
 		props: {
 			data,
-			names
 		}
 	}
 }
@@ -39,20 +40,21 @@ export const getStaticProps:GetStaticProps = async (context) => {
 
 // The real deal!
 
-function genres({data, names}) {
+function genres({data}:any) {
 
 	const router = useRouter();
 	const { genres } = router.query;
+	console.log(data)
 
 	return (
 		<Layout>
 
 			<Head>
-				<title>Neku | {names}</title>
+				<title>Neku | {genres}</title>
 			</Head>
 
 			<h1>Hello! </h1>
-			<p>Hello!</p>
+			<Library data={data.data}></Library>
 
 		</Layout>
 	)

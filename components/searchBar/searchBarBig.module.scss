@@ -87,3 +87,9 @@
         }
     }
 }
+
+@media screen and (max-width:400px) {
+    .searchBar span {
+        display: none;
+    }
+}

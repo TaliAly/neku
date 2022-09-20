@@ -59,7 +59,7 @@ function Search({ data }: any) {
 
 export default Search
 
-export const getServerSideProps: GetServerSideProps = async context => {
+export const getServerSideProps:GetServerSideProps = async context => {
 
     const options = {
         method: "GET",
