@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
 
-const useDarkMode = () => {
-    const [isEnabled, setIsEnabled] = useState((document.body.className == "dark-mode"));
-    const Storage = window.localStorage;
+function isBrowser() {
+    return !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+  }
 
-    useEffect( () => {
+const useDarkMode = () => {
+    const [isEnabled, setIsEnabled] = useState(isBrowser() && (document.body.className == "dark-mode"));
+
+    if (typeof window !== "undefined") {
+        var Storage = window.localStorage;
+    }
+    
+    useEffect(() => {
         const className = "dark-mode";
         const element = window.document.body;
 
@@ -16,10 +23,10 @@ const useDarkMode = () => {
             Storage.removeItem("mode");
         }
     },
-    [isEnabled]
+        [isEnabled]
     );
     // Return enabled state and setter
-    return {isEnabled, setIsEnabled};
+    return { isEnabled, setIsEnabled };
 }
 
 export default useDarkMode

@@ -5,7 +5,7 @@ import { GetServerSideProps } from "next"
 
 // Components
 
-import DeadEnd from "../components/DeadEnd"
+import DeadEnd from "../components/deadEnd"
 const Library = dynamic(() => import("../components/library"))
 import Layout from "../components/layout"
 import Head from "next/head"

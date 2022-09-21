@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 
 // Components
 import Head from "next/head";
-import DeadEnd from "../../components/DeadEnd";
+import DeadEnd from "../../components/deadEnd";
 import Layout from "../../components/layout";
 import Book from "../../components/library/Book";
 import { BookInfo } from "../../components/Type";
+import Pagination from "../../components/paginations";
 
 
 export const getServerSideProps: GetServerSideProps = async context => {

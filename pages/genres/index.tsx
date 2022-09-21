@@ -3,7 +3,6 @@ import {GetStaticProps } from 'next'
 import Link from "next/link"
 
 import Layout from "../../components/layout"
-import Book from "../../components/library/Book"
 
 export const getStaticProps:GetStaticProps = async (context) => {
 
@@ -32,7 +31,7 @@ function genres({data}:any) {
             <h1>Hello!</h1>
 
             { data.data.map( ({mal_id, name}:any) => {
-                return <p key={mal_id}><Link href={`/genres/${name}`}><a>{name}</a></Link></p>
+                return <p key={mal_id}><Link href={`/genres/${mal_id}`}><a>{name}</a></Link></p>
             }
             )}
 

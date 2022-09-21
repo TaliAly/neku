@@ -7,15 +7,14 @@ import { BsFillMoonFill } from "react-icons/bs"
 import { useState, useRef, useEffect } from "react"
 
 
-const { isEnabled, setIsEnabled } = useDarkMode();
 
-function Modal({setCloseModal}:any) {
-
+function Modal({ setCloseModal }: any) {
+    const { isEnabled, setIsEnabled } = useDarkMode();
     const ref = useRef(null);
 
-    const handleClick = (target:any) => {
+    const handleClick = (target: any) => {
 
-        if ( !(target.target == ref.current || target.target.parentElement == ref.current) ) {
+        if (!(target.target == ref.current || target.target.parentElement == ref.current)) {
             setCloseModal(false);
         }
     }
@@ -24,10 +23,10 @@ function Modal({setCloseModal}:any) {
     return (
         <span className={style.modal} onClick={handleClick}>
             <span ref={ref}>
-                <p onClick={ () => { setIsEnabled(!isEnabled) } }> 
+                <p onClick={() => { setIsEnabled(!isEnabled) }}>
                     {isEnabled ?
-                    <> <MdWbSunny /> Light Mode </> :
-                    <> <BsFillMoonFill /> Dark mode </>} 
+                        <> <MdWbSunny /> Light Mode </> :
+                        <> <BsFillMoonFill /> Dark mode </>}
                 </p>
             </span>
         </span>
@@ -36,12 +35,14 @@ function Modal({setCloseModal}:any) {
 
 function Config() {
     const [openModal, setOpenModal] = useState(false);
+    const { isEnabled, setIsEnabled } = useDarkMode();
 
-    useEffect( () => {
 
-        if ( window.localStorage.getItem("mode") == "true" ) {
+    useEffect(() => {
+
+        if (window.localStorage.getItem("mode") == "true") {
             setIsEnabled(true);
-            console.log(Storage.getItem("mode"), isEnabled)
+            console.log(window.localStorage.getItem("mode"), isEnabled)
         }
     }, [])
 
