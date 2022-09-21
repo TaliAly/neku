@@ -46,15 +46,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 	let title = false
 
 	for (let index = 0; index < genresData.data.length; index++) {
-		const element = genresData.data[index];
-		// console.log(element);
-		
+		const element = genresData.data[index];		
 
 		if (element.mal_id == params?.genres) {
 			title = element.name
 			break;
 		} else { continue; }
-	}
+	};
 
 	return {
 		props: {
@@ -65,13 +63,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 	}
 }
 
-
 // The real deal!
 
 function genres({ data, title }: Props) {
-
-	// const router = useRouter();
-	// console.table(data.data)
 
 	return (
 		<Layout>
@@ -80,7 +74,7 @@ function genres({ data, title }: Props) {
 				<title>{`Neku | ${title}`}</title>
 			</Head>
 
-			<h1>Hello! </h1>
+			<h1>Genres </h1>
 			<Library data={data.data}></Library>
 
 		</Layout>
