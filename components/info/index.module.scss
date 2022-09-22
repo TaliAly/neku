@@ -4,6 +4,11 @@
     padding: 1rem;
     border-radius: 10px;
     color:var(--font-alt);
+    max-width: 900px;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 
     .text {
         margin: 0 2rem;

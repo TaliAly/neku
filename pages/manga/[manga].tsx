@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
+import { PropsData } from "../../components/Type";
 
 // Components
 import Head from "next/head";
@@ -8,7 +9,6 @@ import DeadEnd from "../../components/deadEnd";
 import Layout from "../../components/layout";
 import Book from "../../components/library/Book";
 import { BookInfo } from "../../components/Type";
-import Pagination from "../../components/paginations";
 
 
 export const getServerSideProps: GetServerSideProps = async context => {
@@ -20,15 +20,16 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
     const res = await fetch(`https://api.jikan.moe/v4/manga/${manga}`, options)
     const data = await res.json()
+
     return { props: { data } }
 
 }
 
 
-function Manga({ data }: any) {
+function Manga({ data }: PropsData) {
 
     const [getData, setGetData] = useState(false);
-    const BookInfo: BookInfo = data.data
+    const BookInfo: BookInfo = data.data;    
 
     useEffect(() => {
         if (data.status != 404) {

@@ -20,8 +20,25 @@ export interface Target {
     title: string,
     images: {
         webp: {
-            image_url:string,
-            small_image_url:string,
+            image_url: string,
+            small_image_url: string,
         }
     }
+}
+
+export interface PropsData {
+    data: {
+        data: BookInfo,
+        status:number,
+    },
+    pagination: {
+        last_visible_page: number,
+        has_next_page: boolean,
+        current_page: number,
+        items: {
+            count: number,
+            total: number,
+            per_page: number
+        }
+    },
 }

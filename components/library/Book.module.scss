@@ -1,31 +1,80 @@
+@mixin boxes {
+    background-color: var(--bg-dark-comp);
+    color: var(--font-alt);
+    display: inline-flex;
+    padding: .4rem;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+
 .book {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     gap: 20px;
 
     .images {
         img {
             border-radius: 10px;
-            width: 200px;
-            height: 300px;
             object-fit: cover;
+            margin-top: 1.2rem;
+
+            min-width: 200px;
+            min-height: 300px;
+            max-width: 200px;
+            max-height: 300px;
+
         }
 
     }
 
-    span {
-        display: flex;
-        flex-direction: column;
+    &>div {
 
-        h2 {
-            font-size: 42px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+
+        &>div {
+            display: flex;
+            gap: 30px;
+            justify-content: space-around;
+            max-width: 900px;
+
+            span {
+                display: flex;
+                flex-direction: column;
+
+                h2 {
+                    font-size: 42px;
+                }
+
+                p {
+                    @include boxes()
+                }
+
+                .genres {
+                    display: flex;
+                    gap: 20px;
+                }
+            }
         }
-        p {
-            background-color: var(--bg-dark-comp);
-            color:var(--font-alt);
-            padding: .4rem;
-            border-radius: 10px;
-            width:100%;
-            padding: 1rem;
+
+
+    }
+
+    .about {
+
+        display: flex;
+        gap: 20px;
+
+        p,
+        h2 {
+            @include boxes();
+            max-width: 900px;
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
         }
     }
 
@@ -34,5 +83,17 @@
 @media screen and (max-width:700px) {
     .book {
         flex-direction: column;
+        align-items: center;
+
+        &>div {
+            &>div {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .about {
+            flex-direction: column;
+        }
     }
 }

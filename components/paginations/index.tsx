@@ -12,7 +12,12 @@ interface pagProps {
 
 function Pagination(Props:pagProps) {
 
-    const pages = Props.items.count / Props.items.total;
+    const pages:number[] = [];
+
+    for (let index = 0; index < (Props.items.count / Props.items.total); index++) {
+        pages.push(index);
+        
+    }
 
     return (
         <div>

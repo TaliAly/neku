@@ -3,6 +3,7 @@ import { FormEvent, useEffect, useRef } from "react"
 import { MdOutlineSearch } from "react-icons/md"
 import style from "./searchBarBig.module.scss"
 import { useRouter } from "next/router"
+import Link from "next/link"
 
 function SearchBarBig() {
 
@@ -18,7 +19,7 @@ function SearchBarBig() {
                 
             })
         }
-    }
+    };
 
     return (
         <div className={style.searchBar}>
@@ -29,7 +30,7 @@ function SearchBarBig() {
                 <button type="submit"><MdOutlineSearch /></button>
             </form>
             <span>
-                <p>Nuevo</p>
+                <p><Link href="/genres"><a>Géneros</a></Link></p>
                 <p>Random</p>
                 <p>A-Z</p>
                 <p>Completos</p>

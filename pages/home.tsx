@@ -19,19 +19,20 @@ const Home: NextPage = ({ top, book }: any) => {
       </Head>
 
       <Layout>
-        <div className={style.landing}>
           <SearchBarBig />
 
-          <h2>Tops</h2>
-          {(top.status != 400) && <Library data={top.data} />}
+          <div className={style.home}>
 
-          <h4>Tal vez te gusten</h4>
-          {(book.status != 400) && <Library data={book.data} />}
+            <h2>Tops</h2>
+            {(top.status != 400) && <Library data={top.data} />}
 
-          <h4>Quieres ver más?</h4>
-          <Link href="/genres"><a>Entra aquí</a></Link>
+            <h4>Tal vez te gusten</h4>
+            {(book.status != 400) && <Library data={book.data} />}
 
-        </div>
+            <h4>Quieres ver más?</h4>
+            <Link href="/genres"><a>Entra aquí</a></Link>
+          </div>
+
       </Layout>
 
 
@@ -52,7 +53,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const bookRes = await fetch("https://api.jikan.moe/v4/manga?order_by=popularity?sfw=true")
   const book = await bookRes.json()
 
-  return { props: { top, book }, revalidate:86400 }
+  return { props: { top, book }, revalidate: 86400 }
 }
 
 export default Home

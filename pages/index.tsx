@@ -17,8 +17,8 @@ function index() {
             <Layout>
                 <div className={style.landing}>
                     <SearchBarBig />
+                    
                     <Info />
-
                     <News />
                 </div>
 

@@ -15,18 +15,32 @@ interface Props {
 function Book({ genres, cover, synopsis, title }: Props) {
     return (
         <div className={style.book}>
-            <span className={style.images}>
-                <img src={cover} alt={title} width={200} height={300} />
-                <div>{ genres.map( ({mal_id, name}) => {
-                    return <p key={mal_id}>{name}</p>
-                })}
-                </div>
-            </span>
 
-            <span>
-                <h2>{title}</h2>
+            <div>
+
+                <div>
+                    <span className={style.images}>
+                        <img src={cover} alt={title} />
+                    </span>
+
+                    <span>
+                        <h2>{title}</h2>
+
+                        <div className={style.genres}>{genres.map(({ mal_id, name }) => {
+                            return <p key={mal_id}>{name}</p>
+                        })}
+                        </div>
+
+                    </span>
+                </div>
+
+            </div>
+
+            <div className={style.about}>
                 <p>{synopsis}</p>
-            </span>
+                <h2>Episodes</h2>
+            </div>
+
         </div>
     )
 }

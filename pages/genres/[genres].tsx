@@ -1,7 +1,6 @@
-import { useRouter } from "next/router"
 import Head from "next/head"
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { BookInfo } from "../../components/Type"
+import { PropsData } from "../../components/Type"
 
 import Layout from "../../components/layout"
 import Library from "../../components/library"
@@ -10,12 +9,15 @@ interface Data {
 	name: string,
 	mal_id: number,
 }
-interface Props {
-	data: {
-		data: BookInfo
-	},
-	title:string
+
+interface spp {
+	title: string,
 }
+
+interface spp extends PropsData  {
+	title: string
+}
+
 
 export const getStaticPaths: GetStaticPaths = async () => {
 
@@ -23,7 +25,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	const data = await res.json();
 
 
-	const paths = data.data.map(({ name, mal_id }: Data) => {
+	const paths = data.data.map(({mal_id }: Data) => {
 		return {
 			params: { genres: `${mal_id}` },
 		}
@@ -65,7 +67,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 // The real deal!
 
-function genres({ data, title }: Props) {
+function genres({ data, title }: spp) {
 
 	return (
 		<Layout>
@@ -74,7 +76,7 @@ function genres({ data, title }: Props) {
 				<title>{`Neku | ${title}`}</title>
 			</Head>
 
-			<h1>Genres </h1>
+			<h1>Genres {title} </h1>
 			<Library data={data.data}></Library>
 
 		</Layout>

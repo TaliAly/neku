@@ -10,6 +10,12 @@ const useDarkMode = () => {
     if (typeof window !== "undefined") {
         var Storage = window.localStorage;
     }
+
+    useEffect( () => {
+        if (Storage.getItem("mode") == "true") {
+            setIsEnabled(true)
+        }
+    }, [])
     
     useEffect(() => {
         const className = "dark-mode";
@@ -18,9 +24,10 @@ const useDarkMode = () => {
         if (isEnabled) {
             element.classList.add(className);
             Storage.setItem("mode", "true")
-        } else {
+            
+        } else if (isEnabled === false) {
             element.classList.remove(className);
-            Storage.removeItem("mode");
+            Storage.setItem("mode", "false")
         }
     },
         [isEnabled]
