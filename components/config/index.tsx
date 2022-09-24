@@ -3,11 +3,12 @@ import style from "./config.module.scss"
 import { IoSettings } from "react-icons/io5"
 
 import { MdWbSunny } from "react-icons/md"
-import { BsFillMoonFill } from "react-icons/bs"
+import { BsFillMoonFill, BsGithub } from "react-icons/bs"
 import { useState, useRef, useEffect } from "react"
 
 
 
+// This is de menu
 function Modal({ setCloseModal }: any) {
     const { isEnabled, setIsEnabled } = useDarkMode();
     const ref = useRef(null);
@@ -25,13 +26,17 @@ function Modal({ setCloseModal }: any) {
             <span ref={ref}>
                 <p onClick={() => { setIsEnabled(!isEnabled) }}>
                     {isEnabled ?
-                        <> <MdWbSunny /> Light Mode </> :
-                        <> <BsFillMoonFill /> Dark mode </>}
+                        <> Light Mode <MdWbSunny /> </> :
+                        <> Dark mode <BsFillMoonFill /> </>}
                 </p>
+                <p> <a href="https://github.com/TaliAly/Neku"> About <BsGithub/></a></p>
             </span>
         </span>
     )
 }
+
+
+// this will show in the nav bar
 
 function Config() {
     const [openModal, setOpenModal] = useState(false);

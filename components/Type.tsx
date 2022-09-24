@@ -8,7 +8,10 @@ export interface BookInfo {
             small_image_url: string,
         }
     }
+    status:string,
     synopsis: string,
+    chapters:number,
+    volumes:number,
     genres: {
         mal_id: string,
         name: string

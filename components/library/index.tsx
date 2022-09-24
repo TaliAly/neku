@@ -5,8 +5,7 @@ import { Target } from "../Type"
 const Cover = dynamic( () => import("./Cover"))
 
 
-
-function Library({ data }: any) {
+function Library({ data }:any) {
 
     return (
         <div className={style.manga}>

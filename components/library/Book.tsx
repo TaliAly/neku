@@ -1,44 +1,52 @@
 import style from "./Book.module.scss"
-
-interface Props {
-    cover: string,
-    synopsis: string,
-    title: string,
-    genres: {
-        mal_id: string,
-        name: string
-    }[]
-
-}
+import { BsBookmark } from "react-icons/bs"
+import { AiFillBook } from "react-icons/ai"
+import Link from "next/link"
+import { BookInfo } from "../Type"
 
 
-function Book({ genres, cover, synopsis, title }: Props) {
+function Book({ genres, images, synopsis, title, chapters, status }: BookInfo) {
     return (
         <div className={style.book}>
 
             <div>
 
-                <div>
-                    <span className={style.images}>
-                        <img src={cover} alt={title} />
-                    </span>
-
-                    <span>
-                        <h2>{title}</h2>
-
-                        <div className={style.genres}>{genres.map(({ mal_id, name }) => {
-                            return <p key={mal_id}>{name}</p>
-                        })}
-                        </div>
-
-                    </span>
+                <div className={style.images}>
+                    <img src={images.webp.image_url} alt={title} />
                 </div>
+
+                <span>
+                    <h2>{title}</h2>
+
+                    <div className={style.bookOpt}>
+                        <p className={style.read}>Leer ya <AiFillBook /></p>
+                        <p> <BsBookmark /> </p>
+
+                        <span className={style.capsule}>
+                            <p>Status: {status} </p>
+                        </span>
+                    </div>
+
+                    <div className={style.capsule}>{genres.map(({ mal_id, name }) => {
+                        return <p key={mal_id}><Link href={`/genres/${mal_id}`}><a>{name}</a></Link></p>
+                    })}
+                    </div>
+
+                </span>
 
             </div>
 
             <div className={style.about}>
-                <p>{synopsis}</p>
-                <h2>Episodes</h2>
+
+
+                <div className={style.chapters}>
+                    <h2>Capitulos {chapters}</h2>
+                </div>
+
+                <div>
+                    <p>{synopsis}</p>
+                </div>
+
             </div>
 
         </div>
