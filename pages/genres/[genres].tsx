@@ -19,7 +19,7 @@ type Title = boolean | string
 
 // The real deal!
 
-const Genres = ({ data, title }:spp) => {
+const Genres = ({ data }: spp) => {
 
 	const Router = useRouter()
 
@@ -29,10 +29,10 @@ const Genres = ({ data, title }:spp) => {
 		<Layout>
 
 			<Head>
-				<title>{`Neku | ${title}`}</title>
+				<title>{`Neku | Placeholder`}</title>
 			</Head>
 
-			<h1>Genres: {title} </h1>
+			<h1>Genres: Placeholder </h1>
 			<Library data={data.data}></Library>
 
 		</Layout>
@@ -46,59 +46,52 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	try {
 		const res = await fetch(`https://api.jikan.moe/v4/genres/manga`);
 		const data = await res.json();
-	
+
 		const paths = data.data.map(({ mal_id }: Data) => {
 			return {
 				params: { genres: `${mal_id}` },
 			}
 		})
-	
+
 		return {
 			paths, fallback: false
 		}
 	} catch {
 		return {
-			paths:[], fallback:false
+			paths: [], fallback: false
 		}
 	}
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 
-	const genres = params?.genres!
+	const genres = params?.genres
+	// const [name, data] = await Promise.all([
+	// 	fetch("https://api.jikan.moe/v4/genres/manga").then( r => r.json()),
+	// 	fetch(`https://api.jikan.moe/v4/manga?genres=${genres}`).then( r => r.json())
+	// ])
 
-	if (params && genres) {
-		const bookRes = await fetch(`https://api.jikan.moe/v4/manga?genres=${genres}`)
-		const data = await bookRes.json();
+	// let title: Title = false
 
-		const genreRes = await fetch("https://api.jikan.moe/v4/genres/manga");
-		const genresData = await genreRes.json();
+	// for (let index = 0; index < name.data.length; index++) {
+	// 	const element = name.data[index];
 
-		let title: Title = false
+	// 	if (element.mal_id == genres) {
 
-		if (genresData.data != undefined) {
-			for (let index = 0; index < genresData.data.length; index++) {
+	// 		title = element.name;
+	// 		break;
+	// 	}
+	// 	else { continue; }
+	// };
 
-				const element = genresData.data[index];
-				if (element.mal_id == genres) {
-					title = element.name
-					break;
-				} else { continue; }
-			};
-		} else { title = "error" }
-
-		return {
-			props: {
-				data,
-				title
-			},
-			revalidate: 86400,
-		}
-	}
+	const data = await fetch(`https://api.jikan.moe/v4/manga?genres=${genres}`).then( r => r.json())
 
 	return {
 		props: {
-			error: true
-		}
+			data,
+			// title
+		},
+		revalidate: 86400,
 	}
+
 }

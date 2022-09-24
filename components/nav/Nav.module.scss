@@ -30,7 +30,7 @@
         display: flex;
         align-items: center;
 
-        p {
+        &>p, &>a {
             &:hover {
                 background-color: #287bda;
                 cursor: pointer;

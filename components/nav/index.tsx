@@ -1,38 +1,34 @@
 import style from "./Nav.module.scss"
 import Link from "next/link"
 
-import { useEffect, useState } from "react"
-import Config from "../config"
-import {AiFillHome, AiFillBook} from "react-icons/ai"
+import Menu from "../menu"
+import { AiFillHome, AiFillBook } from "react-icons/ai"
 import SearchBar from "./../searchBar"
+import useResponsive from "../useResponsive"
 
-function isBrowser() {
-    return !!(typeof window !== 'undefined' && window.document && window.document.createElement);
-  }
 
 export default function Nav() {
-    const [responsive, setResponsive] = useState(false)
+    const { responsive } = useResponsive()
 
-    useEffect(() => {
-        if (window.innerWidth >= 700) {
-            setResponsive(true);
-        }
-    }, [isBrowser() && window.innerWidth])
 
     return (
         <nav className={style.nav}>
             <Link href="/"><a> <img src="/neku.ico" alt="neku" /><h1>Neku</h1></a></Link>
 
             <div>
-                {responsive &&
-                    <div>
-                        <SearchBar />
-                    </div>
+                {!responsive &&
+                    <>
+                        <div>
+                            <SearchBar />
+                        </div>
+                        <Link href="/home"><a><AiFillHome /></a></Link>
+                        <p><AiFillBook /></p>
+                    </>
+
                 }
-                <p><Link href="/home"><a><AiFillHome /></a></Link></p>
-                <p><AiFillBook /></p>
-                <p> <Config /> </p>
+
+                <p> <Menu /> </p>
             </div>
         </nav>
-        )
+    )
 }

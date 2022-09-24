@@ -1,16 +1,21 @@
 import useDarkMode from "../useDarkMode"
-import style from "./config.module.scss"
-import { IoSettings } from "react-icons/io5"
+import style from "./menu.module.scss"
+import { useState, useRef, useEffect } from "react"
+import useResponsive from "../useResponsive"
 
 import { MdWbSunny } from "react-icons/md"
 import { BsFillMoonFill, BsGithub } from "react-icons/bs"
-import { useState, useRef, useEffect } from "react"
+import { AiOutlineQuestion } from "react-icons/ai"
+import { HiOutlineMenu } from "react-icons/hi"
+import SearchBar from "../searchBar"
+import Link from "next/link"
 
 
 
 // This is de menu
 function Modal({ setCloseModal }: any) {
     const { isEnabled, setIsEnabled } = useDarkMode();
+    const { responsive } = useResponsive();
     const ref = useRef(null);
 
     const handleClick = (target: any) => {
@@ -26,10 +31,22 @@ function Modal({ setCloseModal }: any) {
             <span ref={ref}>
                 <p onClick={() => { setIsEnabled(!isEnabled) }}>
                     {isEnabled ?
-                        <> Light Mode <MdWbSunny /> </> :
-                        <> Dark mode <BsFillMoonFill /> </>}
+                        <> Día <MdWbSunny /> </> :
+                        <> Noche <BsFillMoonFill /> </>}
                 </p>
-                <p> <a href="https://github.com/TaliAly/Neku"> About <BsGithub/></a></p>
+                <Link href="/genres"><a>Géneros <AiOutlineQuestion /> </a></Link>
+
+                {responsive && <>
+                    <a href="https://github.com/TaliAly/Neku">About <BsGithub /> </a>
+
+                    <div className={style.menu}>
+                        <Link href="/search"><a>Search</a></Link>
+                        <p>Random</p>
+                        <p>A - Z</p>
+                        <p>Completos</p>
+                    </div>
+
+                </>}
             </span>
         </span>
     )
@@ -38,7 +55,7 @@ function Modal({ setCloseModal }: any) {
 
 // this will show in the nav bar
 
-function Config() {
+function Menu() {
     const [openModal, setOpenModal] = useState(false);
     const { isEnabled, setIsEnabled } = useDarkMode();
 
@@ -53,11 +70,11 @@ function Config() {
 
     return (
         <>
-            <IoSettings onClick={() => { setOpenModal(!openModal) }} />
+            <HiOutlineMenu onClick={() => { setOpenModal(!openModal) }} />
             {openModal && <Modal setCloseModal={setOpenModal} />}
         </>
     )
 }
 
 
-export default Config
+export default Menu

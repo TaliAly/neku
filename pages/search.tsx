@@ -2,6 +2,7 @@ import { useRouter } from "next/router"
 import dynamic from "next/dynamic"
 import { useEffect, useState } from "react"
 import { GetServerSideProps } from "next"
+import useResponsive from "../components/useResponsive"
 
 // Components
 
@@ -15,8 +16,8 @@ import SearchBar from "../components/searchBar"
 function Search({ data }: any) {
 
     const [getData, setGetData] = useState(data.data);
-
-    const { query } = useRouter()
+    const { query } = useRouter();
+    const { responsive } = useResponsive()
 
 
     useEffect(() => {
@@ -43,15 +44,24 @@ function Search({ data }: any) {
             <Layout>
 
                 {
-                    (getData.length != 0)
-                    &&
-                    <>
-                        <h2>Found something!</h2>
-                        <Library data={getData} />
-                    </>
+                    !responsive && <SearchBar />
                 }
 
-                <DeadEnd />
+                {
+                    (getData.length != 0)
+                        ?
+                        <>
+                            <h2>Se encontró algo!</h2>
+                            <Library data={getData} />
+                            <DeadEnd />
+
+                        </>
+                        :
+                        <>
+                            <h2>Comienza a buscar!</h2>
+                        </>
+                }
+
             </Layout>
         </div>
     )
@@ -59,7 +69,7 @@ function Search({ data }: any) {
 
 export default Search
 
-export const getServerSideProps:GetServerSideProps = async context => {
+export const getServerSideProps: GetServerSideProps = async context => {
 
     const options = {
         method: "GET",

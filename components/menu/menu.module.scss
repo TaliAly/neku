@@ -1,0 +1,67 @@
+.modal {
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    cursor: default;
+
+
+    &>span {
+        position: absolute;
+        right: 10px;
+        top: 70px;
+        border: 2px solid #242424;
+        gap: 5px;
+
+        display: flex;
+        flex-direction: column;
+
+
+        padding: 1rem;
+        border-radius: 10px;
+        background-color: var(--bg);
+        color: var(--font);
+
+        svg, .p {
+            pointer-events:none;
+        }
+
+        p, a {
+            &:hover {
+                background-color: #287bda;
+                cursor: pointer;
+            }
+            font-weight: bolder;
+            margin: 0 .5rem;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            transition: background-color .2s ease-out, border-radius .2s ease-out;
+
+            padding: .5rem .7rem;
+            width: 90%;
+            gap: 10px;
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        .menu {
+            margin: 1rem 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+    .modal {
+        &>span {
+            width: 95vw;
+        }
+    }
+}
