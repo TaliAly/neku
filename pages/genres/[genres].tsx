@@ -29,10 +29,10 @@ const Genres = ({ data }: spp) => {
 		<Layout>
 
 			<Head>
-				<title>{`Neku | Placeholder`}</title>
+				<title>{`Neku`}</title>
 			</Head>
 
-			<h1>Genres: Placeholder </h1>
+			<h1>Genres </h1>
 			<Library data={data.data}></Library>
 
 		</Layout>
@@ -66,32 +66,40 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 	const genres = params?.genres
-	// const [name, data] = await Promise.all([
-	// 	fetch("https://api.jikan.moe/v4/genres/manga").then( r => r.json()),
-	// 	fetch(`https://api.jikan.moe/v4/manga?genres=${genres}`).then( r => r.json())
-	// ])
 
-	// let title: Title = false
+	if (params && genres) {
+		const bookRes = await fetch(`https://api.jikan.moe/v4/manga?genres=${genres}`)
+		const data = await bookRes.json();
 
-	// for (let index = 0; index < name.data.length; index++) {
-	// 	const element = name.data[index];
+		// const genreRes = await fetch("https://api.jikan.moe/v4/genres/manga");
+		// const genresData = await genreRes.json();
 
-	// 	if (element.mal_id == genres) {
+		// let title: Title = false
 
-	// 		title = element.name;
-	// 		break;
-	// 	}
-	// 	else { continue; }
-	// };
+		// if (genresData.data != undefined) {
+		// 	for (let index = 0; index < genresData.data.length; index++) {
 
-	const data = await fetch(`https://api.jikan.moe/v4/manga?genres=${genres}`).then( r => r.json())
+		// 		const element = genresData.data[index];
+		// 		if (element.mal_id == genres) {
+		// 			title = element.name
+		// 			break;
+		// 		} else { continue; }
+		// 	};
+		// } else { title = "error" }
+
+		return {
+			props: {
+				data,
+				// title
+			},
+			revalidate: 86400,
+		}
+	}
 
 	return {
 		props: {
-			data,
-			// title
-		},
-		revalidate: 86400,
+			error: true
+		}
 	}
 
 }
