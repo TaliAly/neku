@@ -6,6 +6,10 @@ import Config from "../config"
 import {AiFillHome, AiFillBook} from "react-icons/ai"
 import SearchBar from "./../searchBar"
 
+function isBrowser() {
+    return !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+  }
+
 export default function Nav() {
     const [responsive, setResponsive] = useState(false)
 
@@ -13,7 +17,7 @@ export default function Nav() {
         if (window.innerWidth >= 700) {
             setResponsive(true);
         }
-    })
+    }, [isBrowser() && window.innerWidth])
 
     return (
         <nav className={style.nav}>
