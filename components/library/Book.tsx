@@ -4,15 +4,18 @@ import { AiFillBook } from "react-icons/ai"
 import Link from "next/link"
 import { BookInfo } from "../Type"
 
+interface Props extends BookInfo {
+    cover: string,
+}
 
-function Book({ genres, images, synopsis, title, chapters, status }: BookInfo) {
+function Book({ genres, cover, synopsis, title, chapters, status }: Props) {
     return (
         <div className={style.book}>
 
             <div>
 
                 <div className={style.images}>
-                    <img src={images.webp.image_url} alt={title} />
+                    <img src={cover} alt={title} />
                 </div>
 
                 <span>

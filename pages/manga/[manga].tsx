@@ -65,13 +65,21 @@ function Manga({ data }: PropsData) {
                     </Head>
 
                     <Book
-                        images={images}
+                        cover={images.webp.image_url}
                         synopsis={synopsis}
                         title={title}
                         genres={genres}
                         chapters={chapters}
                         status={status}
-                    />
+                        mal_id={""}
+                        background={""}
+                        images={{
+                            webp: {
+                                image_url: "",
+                                small_image_url: ""
+                            }
+                        }}
+                        volumes={0} />
                 </>
             }
 
