@@ -24,10 +24,8 @@ interface spp extends PropsData {
 const Genres = ({ data }: spp) => {
 	const [fetchData, setFetchData] = useState(data);
 	const Router = useRouter();
-	console.log(Router.basePath)
 
-
-	if (!!Router.isFallback) return null;
+	if (Router.isFallback) return null;
 
 	return (
 		<Layout>
@@ -53,8 +51,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 		const data = await res.json();
 
 
-		const paths = data?.data?.map(({ mal_id }: Data) => ({
-			params: { genres: `${mal_id}` },
+		// const paths = data?.data?.map(({ mal_id }: Data) => {
+		// 	return {
+		// 		params: { genres: `${mal_id.toString()}` },
+		// 	}
+		// }) || []
+
+		const paths = data?.data?.map((r:Data) => ({
+			params: { genres: `${r.mal_id}` },
 		}))
 
 		return { paths, fallback: true }
@@ -70,6 +74,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 	const genres = params?.genres
 
 	if (params && genres) {
+
 		const bookRes = await fetch(`https://api.jikan.moe/v4/manga?genres=${genres}`)
 		const data = await bookRes.json();
 

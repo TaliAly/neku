@@ -40,7 +40,7 @@ function Search({ data }: any) {
                 <meta property="og:image:width" content="500" />
                 <meta property="og:image:height" content="500" />
             </Head>
-
+            
             <Layout>
 
                 {
