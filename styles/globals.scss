@@ -4,6 +4,7 @@
   --bg: #fdfdfd;
   --font: #1d1d1d;
   --bg-comp: #47637D;
+  --fg: #5F96C9;
 
 
 
@@ -11,6 +12,13 @@
   --bg-dark: #14141f;
   --font-alt: #fefefe;
   --fg-dark: #444469;
+
+}
+
+body.dark-mode {
+  background-color: var(--bg-dark);
+  color: var(--font-alt);
+  --bg-comp: #27273F;
 
 }
 
@@ -22,13 +30,6 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   line-height: 1.4;
-}
-
-body.dark-mode {
-  background-color: var(--bg-dark);
-  color: var(--font-alt);
-  --bg-comp: #27273F;
-
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Poppins&display=swap');

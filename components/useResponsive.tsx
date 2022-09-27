@@ -11,7 +11,6 @@ function useResponsive() {
         if (window.innerWidth >= 700) {
             setResponsive(false);
         }
-        console.log(window.innerWidth, responsive);
         
     }, [isBrowser() && window.innerWidth]);
 

@@ -64,7 +64,6 @@ function Menu() {
 
         if (window.localStorage.getItem("mode") == "true") {
             setIsEnabled(true);
-            console.log(window.localStorage.getItem("mode"), isEnabled)
         }
     }, [])
 

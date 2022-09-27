@@ -1,0 +1,23 @@
+.paginations {
+    display: flex;
+    justify-content: center;
+
+    &>div {
+        overflow: hidden;
+        white-space: nowrap;
+        display: inline-block;
+        text-overflow: ellipsis;
+        width: calc(90vw);
+
+        a {
+            display: inline-block;
+            margin: 1rem .5rem;
+            padding: .5rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: var(--fg);
+        }
+    }
+
+}
