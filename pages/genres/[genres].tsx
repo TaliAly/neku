@@ -49,8 +49,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 		const res = await fetch(`https://api.jikan.moe/v4/genres/manga`);
 		const data = await res.json();
 
-		if (data) {
-			const paths = data?.data?.map((r:Data) => ({
+		let paths:any = {}
+
+		if (!!data) {
+			paths = data.data?.map((r:Data) => ({
 				params: { genres: `${r.mal_id}` },
 			}))
 		}
