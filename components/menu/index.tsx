@@ -7,7 +7,6 @@ import { MdWbSunny } from "react-icons/md"
 import { BsFillMoonFill, BsGithub } from "react-icons/bs"
 import { AiOutlineQuestion } from "react-icons/ai"
 import { HiOutlineMenu } from "react-icons/hi"
-import SearchBar from "../searchBar"
 import Link from "next/link"
 
 

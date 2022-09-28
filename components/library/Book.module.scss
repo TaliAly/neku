@@ -127,6 +127,8 @@
         text-align: center;
 
         &>div {
+            flex-direction: column;
+
             &>div {
                 flex-direction: column;
                 align-items: center;

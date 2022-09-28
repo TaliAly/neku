@@ -50,7 +50,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 	let paths: any = {}
 
-	if (!!data) {
+	if (!!data && !!data.data) {
 
 		paths = data.data?.map((r: Data) => ({
 			params: { genres: `${r.mal_id}` },

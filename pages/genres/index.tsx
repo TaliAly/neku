@@ -28,10 +28,10 @@ function GenresGroup({ data }: any) {
                 <h2>Géneros</h2>
                 <div>
                     {data.data.map((target: any) => {
-                        return <>
+                        return <p key={target.mal_id}>
                             <Link href={`/genres/${target.mal_id}`}><a>{target.name}</a></Link>
                             <br />
-                        </>
+                        </p>
                     })}
                 </div>
             </div>
