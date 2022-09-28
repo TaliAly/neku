@@ -46,17 +46,19 @@ export default Genres
 
 export const getStaticPaths: GetStaticPaths = async () => {
 
-		const data = await fetch(`https://api.jikan.moe/v4/genres/manga`).then( r => r.json() );
+	const data = await fetch(`https://api.jikan.moe/v4/genres/manga`).then(r => r.json());
 
-		let paths:any = {}
+	let paths: any = {}
 
-		if (!!data) {
-			paths = data?.data.map((r:Data) => ({
-				params: { genres: `${r.mal_id}` },
-			}))
-		} else { paths = { params: {} }}
+	if (!!data) {
 
-		return { paths, fallback: true }
+		paths = data.data?.map((r: Data) => ({
+			params: { genres: `${r.mal_id}` },
+		}))
+
+	} else { paths = { params: {} } }
+
+	return { paths, fallback: true }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
