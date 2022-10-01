@@ -28,7 +28,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
 function Manga({ data }: PropsData) {
 
     const [getData, setGetData] = useState(false);
-    const {background,
+    const { background,
         chapters,
         genres,
         images,
@@ -36,7 +36,7 @@ function Manga({ data }: PropsData) {
         status,
         synopsis,
         title,
-        volumes}:BookInfo = data.data;    
+        volumes }: BookInfo = data.data;
 
     useEffect(() => {
         if (data.status != 404) {

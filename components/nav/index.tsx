@@ -12,14 +12,17 @@ export default function Nav() {
     const { responsive } = useResponsive();
     const [respon, setRespon] = useState(responsive);
 
-    useEffect( () => {
+    useEffect(() => {
         setRespon(responsive)
     }, [responsive])
 
 
     return (
         <nav className={style.nav}>
-            <Link href="/"><a> <img src="/neku.ico" alt="neku" /><h1>Neku</h1></a></Link>
+            {respon
+                ? <Link href="/"><a> <img src="/neku.ico" alt="neku" /><h1>Neku</h1></a></Link>
+                : <Link href="/"><a> <img src="/neku.ico" alt="neku" /><h1>Neku Manga</h1></a></Link>
+            }
 
             <div>
                 {!respon &&

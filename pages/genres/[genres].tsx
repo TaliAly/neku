@@ -1,11 +1,12 @@
-import Head from "next/head"
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { PropsData } from "../../components/Type";
 import { useRouter } from "next/router";
 
+import Head from "next/head"
 import Layout from "../../components/layout";
 import Library from "../../components/library";
 import Pagination from "../../components/paginations";
+import { paginationFetch } from '../../components/paginations';
 import { useEffect, useState } from "react";
 
 interface Data {
@@ -17,7 +18,11 @@ interface spp extends PropsData {
 	title: string
 }
 
-// type Title = boolean | string
+interface Query {
+	path: string,
+	page: string,
+}
+// type Title = boolean | string;
 
 // The real deal!
 
@@ -25,7 +30,15 @@ const Genres = ({ data }: spp) => {
 	const [fetchData, setFetchData] = useState(data);
 	const Router = useRouter();
 
+	useEffect(() => {
+
+		const query: any = Router.query
+		paginationFetch(query, setFetchData)
+
+	}, [Router.query])
+
 	if (Router.isFallback) return null;
+
 
 	return (
 		<Layout>
@@ -36,13 +49,20 @@ const Genres = ({ data }: spp) => {
 
 			<h1>Genres </h1>
 			<Library data={fetchData.data}></Library>
-			<Pagination items={fetchData.pagination?.items} path={Router.asPath} />
+			<Pagination
+				items={fetchData.pagination?.items}
+				current_page={fetchData.pagination.current_page}
+				path={Router.pathname.replace("[genres]", `${Router.query?.genres}`)}
+				page={`${Router.query?.page}`}
+				last_visible_page={fetchData.pagination.last_visible_page}
+			/>
 
 		</Layout>
 	)
 }
-
 export default Genres
+
+
 
 export const getStaticPaths: GetStaticPaths = async () => {
 
@@ -53,13 +73,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	if (!!data && !!data.data) {
 
 		paths = data.data?.map((r: Data) => ({
-			params: { genres: `${r.mal_id}` },
+			params: { genres: `${r?.mal_id}` },
 		}))
 
 	} else { paths = { params: {} } }
 
 	return { paths, fallback: true }
 }
+
+
+
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 

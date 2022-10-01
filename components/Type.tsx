@@ -35,13 +35,14 @@ export interface PropsData {
         status: number,
 
         pagination: {
-            last_visible_page?: number,
+            last_visible_page: number,
             has_next_page?: boolean,
+            current_page: number,
             items: {
                 "count": number,
                 "total": number,
-                "per_page": number
-            }
+                "per_page"?: number
+            },
         },
     },
 

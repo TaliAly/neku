@@ -1,21 +1,36 @@
 .paginations {
     display: flex;
     justify-content: center;
+    margin: 0 2rem 1rem 2rem;
 
     &>div {
-        overflow: hidden;
-        white-space: nowrap;
-        display: inline-block;
-        text-overflow: ellipsis;
+        display: flex;
+        list-style-type: none;
+        padding: 0 1rem;
+        border-radius: 20px;
+        background-color: var(--fg);
+
+        gap: 6px;
+
+        li {
+            text-decoration: none;
+            margin: 0;
+        }
 
         a {
             display: inline-block;
-            margin: 1rem .5rem;
             padding: .5rem;
             font-weight: 600;
-            border-radius: 10px;
             cursor: pointer;
-            background-color: var(--fg);
+        }
+
+        .active {
+            background-color: var(--bg-comp);
+            box-shadow: -2px 0 snow, 2px 0 snow;
+        }
+
+        .dots {
+            cursor: default;
         }
     }
 
