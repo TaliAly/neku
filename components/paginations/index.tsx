@@ -1,5 +1,6 @@
 import style from "./paginations.module.scss";
 import Link from "next/link"
+import useResponsive from "./../useResponsive"
 
 interface pagProps {
     last_visible_page: number,
@@ -14,28 +15,81 @@ interface pagProps {
     page: string,
 }
 
-function Pagination({ items, path, current_page, last_visible_page }: pagProps) {
+function Pagination({ path, current_page, last_visible_page }: pagProps) {
+    const { responsive } = useResponsive()
 
     const pages: number[] = [];
+    console.log(current_page)
 
     for (let index = 0; index < last_visible_page; index++) {
         pages.push(index + 1);
     }
 
-    let toRender = () => {
+    // A lot of logic and if's ,_, I'm dying
+    const toRender = () => {
 
-        if (current_page <= 4) {
-            return [...pages.splice(0, 5), "...", last_visible_page]
+        if (!responsive) {
+
+            if (current_page <= 4)
+                return [...pages.splice(0, 5), "...", last_visible_page]
+
+
+            if (current_page >= last_visible_page - 3) {
+                let show = [...pages.reverse()]
+                show.splice(5, last_visible_page)
+                show.reverse()
+
+                return [1, "...", ...show]
+            }
+
+            return [1, "...", ...pages.splice(current_page - 2, 5), "...", last_visible_page]
         }
+
+
+        if (current_page <= 3)
+            return [...pages.splice(0, 3), "...", last_visible_page]
+
+
         if (current_page >= last_visible_page - 3) {
             let show = [...pages.reverse()]
-            show.splice(5, last_visible_page)
+            show.splice(3, last_visible_page)
             show.reverse()
 
             return [1, "...", ...show]
         }
 
-        return [1, "...", ...pages.splice(current_page - 3, 5), "...", last_visible_page]
+        return [1, "...", ...pages.splice(current_page - 2, 3), "...", last_visible_page]
+
+    }
+
+    interface PathRouter {
+        operation: string | null,
+        num: number | null
+    }
+
+    const pathRouter = ({ operation, num }: PathRouter) => {
+
+        if (path.includes("?")) {
+            if (operation && num) {
+                if (operation == "sum") {
+                    return `${path}&page=${current_page + num}`
+                }
+                else if (operation == "sub") {
+                    return `${path}&page=${current_page - num}`
+                }
+            }
+        } else {
+            if (operation && num) {
+                if (operation == "sum") {
+                    return `${path}?page=${current_page + num}`
+                }
+                else if (operation == "sub") {
+                    return `${path}?page=${current_page - num}`
+                }
+            }
+        }
+
+        return `${path}?page=${current_page}`
     }
 
 
@@ -45,7 +99,7 @@ function Pagination({ items, path, current_page, last_visible_page }: pagProps) 
             <div>
                 {(current_page - 1 <= 0)
                     ? <Link href={`${path}`}><a> {"<"} </a></Link>
-                    : <Link href={`${path}?page=${current_page - 1}`}><a> {"<"} </a></Link>
+                    : <Link href={pathRouter({ operation: "sub", num: 1 })}><a> {"<"} </a></Link>
                 }
 
                 {
@@ -63,6 +117,11 @@ function Pagination({ items, path, current_page, last_visible_page }: pagProps) 
                         if (r == "...")
                             return <a key={r + index} className={style.dots}>{r}</a>
 
+                        if (path.includes("?")) {
+                            return <Link href={`${path}&page=${r}`} key={r}>
+                                <a>{r}</a></Link>
+                        }
+
                         return <Link href={`${path}?page=${r}`} key={r}>
                             <a>{r}</a></Link>
 
@@ -70,8 +129,8 @@ function Pagination({ items, path, current_page, last_visible_page }: pagProps) 
                 }
 
                 {(current_page + 1 >= last_visible_page)
-                    ? <Link href={`${path}?page=${current_page}`}><a> {">"} </a></Link>
-                    : <Link href={`${path}?page=${current_page + 1}`}><a> {">"} </a></Link>
+                    ? <Link href={pathRouter({ operation: null, num: null })}><a> {">"} </a></Link>
+                    : <Link href={pathRouter({ operation: "sum", num: 1 })}><a> {">"} </a></Link>
                 }
             </div>
         </div>
@@ -79,27 +138,3 @@ function Pagination({ items, path, current_page, last_visible_page }: pagProps) 
 }
 
 export default Pagination
-
-
-
-interface Query {
-    page: string,
-    genres: string,
-}
-export const paginationFetch = async (query: Query, setFetch: Function) => {
-
-    if (!!query.page) {
-        const data = await
-            fetch(`https://api.jikan.moe/v4/manga?genres=${query.genres}&page=${query.page}`)
-                .then(r => r.json())
-
-        setFetch(data)
-    }
-    else {
-        const data = await
-            fetch(`https://api.jikan.moe/v4/manga?genres=${query.genres}`)
-                .then(r => r.json())
-
-        setFetch(data)
-    }
-}

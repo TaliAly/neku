@@ -8,7 +8,7 @@ interface Props extends BookInfo {
     cover: string,
 }
 
-function Book({ genres, cover, synopsis, title, chapters, status }: Props) {
+function Book({ genres, cover, synopsis, title, chapters, status, title_japanese }: Props) {
     return (
         <div className={style.book}>
 
@@ -20,19 +20,22 @@ function Book({ genres, cover, synopsis, title, chapters, status }: Props) {
 
                 <span>
                     <h2>{title}</h2>
+                    <h4>{title_japanese}</h4>
 
                     <div className={style.bookOpt}>
                         <p className={style.read}>Leer ya <AiFillBook /></p>
                         <p> <BsBookmark /> </p>
-
                         <span className={style.capsule}>
                             <p>Status: {status} </p>
                         </span>
                     </div>
 
-                    <div className={style.capsule}>{genres.map(({ mal_id, name }) => {
-                        return <p key={mal_id}><Link href={`/genres/${mal_id}`}><a>{name}</a></Link></p>
-                    })}
+                    <div className={style.capsule}>
+                        {
+                            genres.map(({ mal_id, name }) => {
+                                return <Link href={`/mangas/genres/${mal_id}`} key={mal_id}><a>{name}</a></Link>
+                            })
+                        }
                     </div>
 
                 </span>

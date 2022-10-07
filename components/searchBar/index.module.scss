@@ -16,8 +16,8 @@
     // Search Input
     input {
         height: 2.5rem;
-        width: clamp(100px, 65vw, 300px);
-        border-radius: 65px;
+        width: clamp(100px, 65vw, 250px);
+        border-radius: 10px;
         padding: 0 1rem;
         font-size: 18px;
         font-weight: 500;
@@ -29,7 +29,8 @@
         outline-offset: -1px;
         transition: outline-offset 100ms ease;
 
-        &:focus, &:hover{
+        &:focus,
+        &:hover {
             outline: 2px solid var(--clr);
             outline-offset: 2px;
             border: none;
@@ -53,8 +54,8 @@
         font-size: 25px;
         width: 35px;
         height: 35px;
-        
-        
+
+
         border: none;
         border-radius: 100%;
 

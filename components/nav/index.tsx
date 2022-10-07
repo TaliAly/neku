@@ -19,10 +19,7 @@ export default function Nav() {
 
     return (
         <nav className={style.nav}>
-            {respon
-                ? <Link href="/"><a> <img src="/neku.ico" alt="neku" /><h1>Neku</h1></a></Link>
-                : <Link href="/"><a> <img src="/neku.ico" alt="neku" /><h1>Neku Manga</h1></a></Link>
-            }
+            <Link href="/"><a> <img src="/neku.ico" alt="neku" /><h1>Neku</h1></a></Link>
 
             <div>
                 {!respon &&
@@ -30,11 +27,12 @@ export default function Nav() {
                         <div>
                             <SearchBar />
                         </div>
-                        <Link href="/home"><a><AiFillHome /></a></Link>
+                        <Link href="/"><a><AiFillHome /></a></Link>
                         <p><AiFillBook /></p>
                     </>
 
                 }
+
 
                 <p> <Menu /> </p>
             </div>

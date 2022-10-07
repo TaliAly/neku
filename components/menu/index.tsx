@@ -8,25 +8,36 @@ import { BsFillMoonFill, BsGithub } from "react-icons/bs"
 import { AiOutlineQuestion } from "react-icons/ai"
 import { HiOutlineMenu } from "react-icons/hi"
 import Link from "next/link"
+import gsap from "gsap"
+
 
 
 
 // This is de menu
 function Modal({ setCloseModal }: any) {
-    const { isEnabled, setIsEnabled } = useDarkMode();
-    const { responsive } = useResponsive();
-    const ref = useRef(null);
+    const { isEnabled, setIsEnabled } = useDarkMode()
+    const { responsive } = useResponsive()
+    const ref = useRef(null)
+    const modal = useRef(null)
 
-    const handleClick = (target: any) => {
+    useEffect(() => {
+        gsap.set(modal.current, { opacity: 0, y: -10 })
+        gsap.to(modal.current, { opacity: 1, y: +10 })
+
+    }, [])
+
+
+    const handleClick = async (target: any) => {
 
         if (!(target.target == ref.current || target.target.parentElement == ref.current)) {
+            await gsap.set(modal.current, { animationDuration: .2 })
+            await gsap.to(modal.current, { opacity: 0, y: 10 });
             setCloseModal(false);
         }
     }
-
     // If you find a way to make this work without another p tag, then let me know, I'm lazy to do this
     return (
-        <span className={style.modal} onClick={handleClick}>
+        <span className={style.modal} onClick={handleClick} ref={modal}>
             <span ref={ref}>
                 <p onClick={() => { setIsEnabled(!isEnabled) }}>
                     {isEnabled ?

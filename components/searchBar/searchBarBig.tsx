@@ -10,13 +10,13 @@ function SearchBarBig() {
     const router = useRouter()
     const queryInput = useRef<HTMLInputElement>(null)
 
-    function getForm(e:FormEvent) {
+    function getForm(e: FormEvent) {
         e.preventDefault()
-        if (router.query ) {
+        if (router.query) {
             router.push({
                 pathname: "/search",
                 query: { search: `${queryInput.current?.value}`, },
-                
+
             })
         }
     };
@@ -26,7 +26,7 @@ function SearchBarBig() {
 
             <h2>¿Qué leeras hoy?</h2>
             <form onSubmit={getForm}>
-                <input type="text" ref={queryInput} />
+                <input type="text" ref={queryInput} placeholder="busca un manga" />
                 <button type="submit"><MdOutlineSearch /></button>
             </form>
             <span>

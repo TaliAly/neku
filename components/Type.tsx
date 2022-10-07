@@ -1,5 +1,6 @@
 export interface BookInfo {
     title: string,
+    title_japanese: string,
     mal_id: string,
     background: string,
     images: {
@@ -27,6 +28,7 @@ export interface Target {
             small_image_url: string,
         }
     }
+    synopsis: string,
 }
 
 export interface PropsData {

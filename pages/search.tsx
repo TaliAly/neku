@@ -1,4 +1,4 @@
-import { useRouter } from "next/router"
+import { Router, useRouter } from "next/router"
 import dynamic from "next/dynamic"
 import { useEffect, useState } from "react"
 import { GetServerSideProps } from "next"
@@ -6,24 +6,30 @@ import useResponsive from "../components/useResponsive"
 
 // Components
 
-import DeadEnd from "../components/deadEnd"
 const Library = dynamic(() => import("../components/library"))
 import Layout from "../components/layout"
 import Head from "next/head"
 import SearchBar from "../components/searchBar"
+import Pagination from "../components/paginations"
+import { PropsData } from "../components/Type"
 
 
-function Search({ data }: any) {
+function Search({ data }: PropsData) {
 
-    const [getData, setGetData] = useState(data.data);
-    const { query } = useRouter();
-    const { responsive } = useResponsive()
+    const [getData, setGetData] = useState(data);
+    const Router = useRouter();
+    const { responsive } = useResponsive();
+    const fetchData = data.pagination;
+    const query: any = Router.query
+
+    // console.log(getData)
 
 
     useEffect(() => {
-        setGetData(data.data)
+        setGetData(data)
 
     }, [data])
+
 
     return (
         <div>
@@ -40,21 +46,35 @@ function Search({ data }: any) {
                 <meta property="og:image:width" content="500" />
                 <meta property="og:image:height" content="500" />
             </Head>
-            
+
             <Layout>
 
                 {
-                    !responsive && <SearchBar />
+                    responsive && <SearchBar />
                 }
 
                 {
-                    (getData.length != 0)
+                    (getData.data?.length != 0)
                         ?
                         <>
-                            <h2>Se encontró algo!</h2>
-                            <Library data={getData} />
-                            <DeadEnd />
+                            <h2>Buscaste por: {query?.search}</h2>
+                            <Library data={getData.data} />
 
+                            {
+                                (fetchData?.last_visible_page >= 2)
+                                &&
+                                <Pagination
+                                    items={fetchData?.items}
+                                    current_page={fetchData?.current_page}
+                                    path={`${Router.pathname}?search=${query.search}`}
+                                    page={`${query?.page}`}
+                                    last_visible_page={fetchData?.last_visible_page}
+                                />
+                            }
+
+                            {
+                                console.log(`${query.search}`)
+                            }
                         </>
                         :
                         <>
@@ -75,9 +95,15 @@ export const getServerSideProps: GetServerSideProps = async context => {
         method: "GET",
     }
     const search = context.query.search?.toString().replaceAll(" ", "+")
+    let data = {}
+    let page = context.query.page
 
-    const req = await fetch(`https://api.jikan.moe/v4/manga?q=${search}&order_by=popularity&type=manga&sfw=true`, options);
-    const data = await req.json();
+
+    if (!!page) {
+        data = await fetch(`https://api.jikan.moe/v4/manga?q=${search}&order_by=popularity&type=manga&sfw=true&page=${page}`, options).then(r => r.json())
+    } else {
+        data = await fetch(`https://api.jikan.moe/v4/manga?q=${search}&order_by=popularity&type=manga&sfw=true`, options).then(r => r.json())
+    }
 
     return {
         props: {

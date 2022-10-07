@@ -7,14 +7,13 @@ import Image from "next/image"
 interface Props {
     image: string,
     name: string,
-    mal_id:string,
+    mal_id: string,
 }
 
 function Cover(props: Props) {
 
-
     return (
-        <Link href={`/manga/${props.mal_id}`}>
+        <Link href={`/mangas/${props.mal_id}`}>
             <a>
                 <div className={style.book}>
                     <span>

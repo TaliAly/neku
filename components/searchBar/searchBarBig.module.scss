@@ -24,9 +24,10 @@
     input {
         height: 4rem;
         width: clamp(200px, 65vw, 700px);
-        border-radius: 65px;
+        border-radius: 40px;
         padding: 0 1.5rem;
         font-size: 23px;
+        font-weight: 500;
 
         --clr: #287bda;
         --outline: 0px solid var(--clr);
@@ -35,7 +36,8 @@
         outline-offset: -1px;
         transition: outline-offset 100ms ease;
 
-        &:focus, &:hover{
+        &:focus,
+        &:hover {
             outline: 2px solid var(--clr);
             outline-offset: 2px;
             border: none;
@@ -59,8 +61,8 @@
         font-size: 55px;
         width: 58px;
         height: 58px;
-        
-        
+
+
         border: none;
         border-radius: 100%;
 
