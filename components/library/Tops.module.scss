@@ -1,0 +1,55 @@
+.tops {
+
+    display: grid;
+    max-width: 1000px;
+    grid-template-columns: 1fr 2fr;
+    border-radius: 20px;
+    place-items: center;
+    height: 320px;
+    margin: 2rem auto;
+    padding: .5rem 0;
+    background-color: var(--fg-comp);
+    color: var(--font-alt);
+
+    img {
+        min-width: 200px;
+        object-fit: contain;
+        border-radius: 5px;
+        aspect-ratio: 1.5 / 2;
+    }
+
+    span {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        h4 {
+            margin: .4rem;
+            font-size: 27px;
+        }
+
+        p {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            width: 90%;
+        }
+    }
+
+}
+
+@media screen and (max-width:900px) {
+    .tops {
+        border-radius: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        span p {
+            display: none;
+        }
+    }
+}
