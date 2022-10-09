@@ -48,20 +48,16 @@ const Genres = ({ data, genreName }: spp) => {
 			<h1>Generos para {genreName} </h1>
 			{/* (Router.isFallback || Router.isReady) */}
 
-			{!!genres ?
-				<>
-					<Library data={fetchData.data}></Library>
-					<Pagination
-						items={fetchData.pagination?.items}
-						current_page={fetchData.pagination?.current_page}
-						path={Router.pathname.replace("[genres]", `${Router.query?.genres}`)}
-						page={`${Router.query?.page}`}
-						last_visible_page={fetchData.pagination?.last_visible_page}
-					/>
-				</>
-				:
-				<h1>Error!</h1>
-			}
+			<>
+				<Library data={fetchData.data}></Library>
+				<Pagination
+					items={fetchData.pagination?.items}
+					current_page={fetchData.pagination?.current_page}
+					path={Router.pathname.replace("[genres]", `${Router.query?.genres}`)}
+					page={`${Router.query?.page}`}
+					last_visible_page={fetchData.pagination?.last_visible_page}
+				/>
+			</>
 
 		</Layout>
 	)
@@ -90,7 +86,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 	console.log(genres)
 
-	const data = (await (await fetch(`https://api.jikan.moe/v4/manga?genres=${genres}&sfw=true`)).json())
+	const data = (await (await fetch(`https://api.jikan.moe/v4/manga?genres=${genres}`)).json())
 
 	const resGenre = (await (await fetch(`https://api.jikan.moe/v4/genres/manga`)).json())
 

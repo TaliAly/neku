@@ -62,7 +62,7 @@ export const getStaticProps: GetStaticProps = async () => {
     const topRes = await fetch('https://api.jikan.moe/v4/top/manga?limit=6', options)
     const top = await topRes.json();
 
-    const bookRes = await fetch("https://api.jikan.moe/v4/manga?order_by=rank?sfw=true")
+    const bookRes = await fetch("https://api.jikan.moe/v4/manga?order_by=popularity")
     const book = await bookRes.json()
 
     return { props: { top, book }, revalidate: 86400 }
