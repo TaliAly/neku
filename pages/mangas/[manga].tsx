@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 import Head from "next/head";
 import DeadEnd from "../../components/deadEnd";
 import Layout from "../../components/layout";
-import Book from "../../components/library/Book";
+const Book = dynamic(() => import("../../components/library/Book"))
 import style from "./../../styles/manga.module.scss"
 
 
