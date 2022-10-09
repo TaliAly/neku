@@ -67,17 +67,20 @@ function Pagination({ path, current_page, last_visible_page }: pagProps) {
     }
 
     const pathRouter = ({ operation, num }: PathRouter) => {
+        const havingQuery = path.includes("?");
 
-        if (path.includes("?")) {
-            if (operation && num) {
-                if (operation == "sum") {
-                    return `${path}&page=${current_page + num}`
-                }
-                else if (operation == "sub") {
-                    return `${path}&page=${current_page - num}`
-                }
+        if (havingQuery) {
+
+            if (operation == "sum") {
+                return `${path}&page=${current_page + num!}`
             }
-        } else {
+            else if (operation == "sub") {
+                return `${path}&page=${current_page - num!}`
+            }
+        }
+
+        else {
+
             if (operation && num) {
                 if (operation == "sum") {
                     return `${path}?page=${current_page + num}`
@@ -86,6 +89,7 @@ function Pagination({ path, current_page, last_visible_page }: pagProps) {
                     return `${path}?page=${current_page - num}`
                 }
             }
+
         }
 
         return `${path}?page=${current_page}`
@@ -97,8 +101,20 @@ function Pagination({ path, current_page, last_visible_page }: pagProps) {
         <div className={style.paginations}>
             <div>
                 {(current_page - 1 <= 0)
-                    ? <Link href={`${path}`}><a> {"<"} </a></Link>
-                    : <Link href={pathRouter({ operation: "sub", num: 1 })}><a> {"<"} </a></Link>
+                    ?
+
+                    <Link href={`${path}`}>
+                        <a> {"<"} </a>
+                    </Link>
+                    :
+
+                    <Link href={pathRouter({
+                        operation: "sub",
+                        num: 1
+                    })}>
+                        <a> {"<"} </a>
+                    </Link>
+
                 }
 
                 {
@@ -128,8 +144,21 @@ function Pagination({ path, current_page, last_visible_page }: pagProps) {
                 }
 
                 {(current_page + 1 >= last_visible_page)
-                    ? <Link href={pathRouter({ operation: null, num: null })}><a> {">"} </a></Link>
-                    : <Link href={pathRouter({ operation: "sum", num: 1 })}><a> {">"} </a></Link>
+                    ?
+                    <Link href={pathRouter({
+                        operation: null,
+                        num: null
+                    })}>
+                        <a> {">"} </a>
+                    </Link>
+
+                    :
+                    <Link href={pathRouter({
+                        operation: "sum",
+                        num: 1
+                    })}>
+                        <a> {">"} </a>
+                    </Link>
                 }
             </div>
         </div>

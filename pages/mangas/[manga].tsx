@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
-import { useEffect, useState } from "react";
 import { PropsData } from "../../components/Type";
+import dynamic from "next/dynamic";
 
 // Components
 import Head from "next/head";
@@ -13,11 +13,8 @@ import style from "./../../styles/manga.module.scss"
 export const getServerSideProps: GetServerSideProps = async context => {
 
     const { manga } = context.query;
-    const options = {
-        method: 'GET',
-    };
 
-    const res = await fetch(`https://api.jikan.moe/v4/manga/${manga}/full`, options)
+    const res = await fetch(`https://api.jikan.moe/v4/manga/${manga}/full`)
     const data = await res.json()
 
     return { props: { data } }
@@ -28,22 +25,21 @@ export const getServerSideProps: GetServerSideProps = async context => {
 function Manga({ data }: PropsData) {
 
     const {
-        chapters,
         genres,
         images,
-        mal_id,
         status,
         synopsis,
         title,
         volumes,
-        title_japanese } = data.data;
+        title_japanese,
+        chapters } = data.data;
 
     return (
         <Layout>
 
             <div className={style.manga}>
 
-                {!!data.data ?
+                {
                     <>
                         <Head>
                             <title>Neku | {title}</title>
@@ -79,7 +75,7 @@ function Manga({ data }: PropsData) {
                             }}
                             volumes={volumes} />
                     </>
-                    : <DeadEnd />
+                    || <DeadEnd />
                 }
 
             </div>

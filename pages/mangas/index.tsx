@@ -4,7 +4,6 @@ import Link from "next/link";
 import Head from "next/head";
 import style from "./index.module.scss"
 import Library from "../../components/library";
-import { useEffect, useState } from "react";
 import { NextPage } from "next";
 
 
@@ -23,34 +22,37 @@ const Mangas: NextPage = ({ resMangas, resGenres }: any) => {
             <div className={style.genres}>
                 <h2>Mangas para ver</h2>
 
-                <div>
+                <div className={style.content}>
                     {/* (Router.isFallback || Router.isReady) */}
 
                     {(resMangas && resGenres) &&
                         <>
                             <Library data={manga} />
 
-                            <div className={style.holder}>
-                                {
-                                    genres?.map((target: any) => {
-                                        return <p key={target.mal_id}>
-                                            <Link href={`/mangas/genres/${target.mal_id}`}><a>{target.name}</a></Link>
-                                            <br />
-                                        </p>
-                                    })
-                                }
+                            <div>
+                                <h3>Generos</h3>
+                                <div className={style.holder}>
+                                    {
+                                        genres?.map((target: any) => {
+                                            return <p key={target.mal_id}>
+                                                <Link href={`/mangas/genres/${target.mal_id}`}><a>{target.name}</a></Link>
+                                                <br />
+                                            </p>
+                                        })
+                                    }
+                                </div>
                             </div>
                         </>
                     }
 
                 </div>
 
-                <div>
+                <div className={style.menu}>
                     { /* Holder of links :D */}
-
                     <Link href="/mangas/a-z"><a>a-z</a></Link>
                     <Link href="/mangas/random"><a>random</a></Link>
                     <Link href="/mangas/completos"><a>Completos</a></Link>
+
                 </div>
 
             </div>

@@ -40,7 +40,7 @@ const Index: NextPage = ({ top, book }: any) => {
 
                     <div className={style.more}>
                         <h4>Quieres ver más?</h4>
-                        <Link href="/mangas/genres"><a>Entra aquí <AiFillCaretRight /></a></Link>
+                        <Link href="/mangas"><a>Entra aquí <AiFillCaretRight /></a></Link>
                     </div>
 
                 </div>
@@ -59,10 +59,10 @@ export const getStaticProps: GetStaticProps = async () => {
         method: 'GET',
     };
 
-    const topRes = await fetch('https://api.jikan.moe/v4/seasons/now?limit=6', options)
+    const topRes = await fetch('https://api.jikan.moe/v4/top/manga?limit=6', options)
     const top = await topRes.json();
 
-    const bookRes = await fetch("https://api.jikan.moe/v4/manga?order_by=popularity?sfw=true")
+    const bookRes = await fetch("https://api.jikan.moe/v4/manga?order_by=rank?sfw=true")
     const book = await bookRes.json()
 
     return { props: { top, book }, revalidate: 86400 }

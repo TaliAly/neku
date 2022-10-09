@@ -40,29 +40,41 @@ function Modal({ setCloseModal }: any) {
     return (
         <span className={style.modal} onClick={handleClick} ref={modal}>
             <span ref={ref}>
-                <p onClick={() => { setIsEnabled(!isEnabled) }}>
-                    {isEnabled ?
-                        <> Día <MdWbSunny /> </> :
-                        <> Noche <BsFillMoonFill /> </>}
-                </p>
-
-                <Link href="/mangas"><a> Mangas <AiFillBook /> </a></Link>
                 {
-                    !responsive && <Link href="/search"><a>Search</a></Link>
+                    responsive
+                        ?
+                        <>
+                            <p onClick={() => { setIsEnabled(!isEnabled) }}>
+                                {isEnabled ?
+                                    <> Día <MdWbSunny /> </> :
+                                    <> Noche <BsFillMoonFill /> </>}
+                            </p>
+
+                            <Link href="/mangas"><a> Mangas <AiFillBook /> </a></Link>
+
+                            <a href="https://github.com/TaliAly/Neku">About<BsGithub /> </a>
+
+                            <div className={style.menu}>
+                                <Link href="/search"><a>Search <BiSearch /></a></Link>
+                                <p>Random</p>
+                                <p>A - Z</p>
+                                <p>Completos</p>
+                            </div>
+
+                        </>
+                        :
+                        <>
+                            <p onClick={() => { setIsEnabled(!isEnabled) }}>
+                                {isEnabled ?
+                                    <> Día <MdWbSunny /> </> :
+                                    <> Noche <BsFillMoonFill /> </>}
+                            </p>
+
+                            <Link href="/mangas"><a> Mangas <AiFillBook /> </a></Link>
+
+                            <Link href="/search"><a>Search</a></Link>
+                        </>
                 }
-
-                {
-                    responsive && <>
-                        <a href="https://github.com/TaliAly/Neku">About<BsGithub /> </a>
-
-                        <div className={style.menu}>
-                            <Link href="/search"><a>Search <BiSearch /></a></Link>
-                            <p>Random</p>
-                            <p>A - Z</p>
-                            <p>Completos</p>
-                        </div>
-
-                    </>}
             </span>
         </span>
     )
