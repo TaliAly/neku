@@ -7,7 +7,6 @@ import Head from "next/head";
 import DeadEnd from "../../components/deadEnd";
 import Layout from "../../components/layout";
 import Book from "../../components/library/Book";
-import { BookInfo } from "../../components/Type";
 import style from "./../../styles/manga.module.scss"
 
 
@@ -28,8 +27,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
 function Manga({ data }: PropsData) {
 
-    const [getData, setGetData] = useState(false);
-    const { background,
+    const {
         chapters,
         genres,
         images,
@@ -38,21 +36,14 @@ function Manga({ data }: PropsData) {
         synopsis,
         title,
         volumes,
-        title_japanese }: BookInfo = data.data;
-
-    useEffect(() => {
-        if (data.status == 404) {
-            setGetData(false);
-        }
-        else setGetData(true)
-    }, [])
+        title_japanese } = data.data;
 
     return (
         <Layout>
 
             <div className={style.manga}>
 
-                {getData ?
+                {!!data.data ?
                     <>
                         <Head>
                             <title>Neku | {title}</title>

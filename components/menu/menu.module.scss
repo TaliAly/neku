@@ -1,6 +1,6 @@
 .modal {
     z-index: 200;
-    position:absolute;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -24,21 +24,25 @@
         background-color: var(--bg);
         color: var(--font);
 
-        svg, .p {
-            pointer-events:none;
+        svg,
+        .p {
+            pointer-events: none;
         }
 
-        p, a {
+        p,
+        a {
             &:hover {
                 background-color: #287bda;
                 cursor: pointer;
             }
+
             font-weight: bolder;
             margin: 0 .5rem;
             border-radius: 30px;
             display: inline-flex;
             align-items: center;
-            transition: background-color .2s ease-out, border-radius .2s ease-out;
+            transition: background-color .2s ease-out,
+            border-radius .2s ease-out;
 
             padding: .5rem .7rem;
             width: 90%;
@@ -62,7 +66,10 @@
 @media screen and (max-width: 700px) {
     .modal {
         &>span {
-            width: 95vw;
+            width: 97vw;
+            border-radius: 0;
+            margin: 0;
+            right: 0;
         }
     }
 }

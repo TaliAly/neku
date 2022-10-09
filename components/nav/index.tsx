@@ -2,7 +2,7 @@ import style from "./Nav.module.scss"
 import Link from "next/link"
 
 import Menu from "../menu"
-import { AiFillHome, AiFillBook } from "react-icons/ai"
+import { AiFillHome } from "react-icons/ai"
 import SearchBar from "./../searchBar"
 import useResponsive from "../useResponsive"
 import { useEffect, useState } from "react"
@@ -28,7 +28,6 @@ export default function Nav() {
                             <SearchBar />
                         </div>
                         <Link href="/"><a><AiFillHome /></a></Link>
-                        <p><AiFillBook /></p>
                     </>
 
                 }

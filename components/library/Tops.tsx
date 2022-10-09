@@ -1,6 +1,8 @@
 import Link from "next/link"
 import Image from "next/image"
 import style from "./Tops.module.scss"
+import useDarkMode from "./../useDarkMode"
+
 
 interface Props {
     image: string,
@@ -10,10 +12,14 @@ interface Props {
 }
 
 function Tops({ image, mal_id, name, synopsis }: Props) {
+    const { isEnabled, setIsEnabled } = useDarkMode()
+
+    let Class = (isEnabled) ? style.tops_dark : style.tops
+
     return (
         <Link href={`/mangas/${mal_id}`}>
             <a>
-                <div className={style.tops}>
+                <div className={Class}>
                     <Image src={image} alt={name} width={250} height={300} className={style.top} />
 
                     <span>

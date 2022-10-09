@@ -54,7 +54,7 @@ function Search({ data }: PropsData) {
                 }
 
                 {
-                    (getData.data?.length != 0)
+                    (!!query?.search)
                         ?
                         <>
                             <h2>Buscaste por: {query?.search}</h2>
@@ -70,10 +70,6 @@ function Search({ data }: PropsData) {
                                     page={`${query?.page}`}
                                     last_visible_page={fetchData?.last_visible_page}
                                 />
-                            }
-
-                            {
-                                console.log(`${query.search}`)
                             }
                         </>
                         :

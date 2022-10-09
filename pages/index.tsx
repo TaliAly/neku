@@ -1,30 +1,71 @@
-import style from "../styles/index.module.scss"
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import style from "./../styles/index.module.scss"
+import { GetStaticProps } from 'next'
 
-import Head from "next/head"
-import Layout from "../components/layout"
+import Layout from '../components/layout'
+import { AiFillCaretRight } from "react-icons/ai"
+import Link from "next/link"
 import SearchBarBig from '../components/searchBar/searchBarBig'
-import News from "../components/info/news"
-import Info from "../components/info"
+import Library from '../components/library'
+import CarouselReact from '../components/CarouselReact'
 
+const Index: NextPage = ({ top, book }: any) => {
 
-function index() {
     return (
         <div>
             <Head>
-                <title>Neku Manga</title>
+                <title>Neku | Home </title>
             </Head>
 
             <Layout>
-                <div className={style.landing}>
+
+                <div className={style.home}>
                     <SearchBarBig />
-                    
-                    <Info />
-                    <News />
+
+
+
+
+                    <div className={style.hold}>
+
+                        <CarouselReact data={top.data} />
+
+
+                        <div className={style.hold_margin}>
+                            <Library data={book.data} />
+                        </div>
+
+
+                    </div>
+
+                    <div className={style.more}>
+                        <h4>Quieres ver más?</h4>
+                        <Link href="/mangas/genres"><a>Entra aquí <AiFillCaretRight /></a></Link>
+                    </div>
+
                 </div>
 
             </Layout>
+
+
         </div>
     )
-};
+}
 
-export default index
+
+export const getStaticProps: GetStaticProps = async () => {
+
+    const options = {
+        method: 'GET',
+    };
+
+    const topRes = await fetch('https://api.jikan.moe/v4/seasons/now?limit=6', options)
+    const top = await topRes.json();
+
+    const bookRes = await fetch("https://api.jikan.moe/v4/manga?order_by=popularity?sfw=true")
+    const book = await bookRes.json()
+
+    return { props: { top, book }, revalidate: 86400 }
+}
+
+export default Index

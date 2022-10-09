@@ -19,7 +19,6 @@ function Pagination({ path, current_page, last_visible_page }: pagProps) {
     const { responsive } = useResponsive()
 
     const pages: number[] = [];
-    console.log(current_page)
 
     for (let index = 0; index < last_visible_page; index++) {
         pages.push(index + 1);

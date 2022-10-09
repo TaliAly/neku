@@ -5,7 +5,8 @@ import useResponsive from "../useResponsive"
 
 import { MdWbSunny } from "react-icons/md"
 import { BsFillMoonFill, BsGithub } from "react-icons/bs"
-import { AiOutlineQuestion } from "react-icons/ai"
+import { AiFillBook } from "react-icons/ai"
+import { BiSearch } from "react-icons/bi"
 import { HiOutlineMenu } from "react-icons/hi"
 import Link from "next/link"
 import gsap from "gsap"
@@ -44,19 +45,24 @@ function Modal({ setCloseModal }: any) {
                         <> Día <MdWbSunny /> </> :
                         <> Noche <BsFillMoonFill /> </>}
                 </p>
-                <Link href="/genres"><a>Géneros <AiOutlineQuestion /> </a></Link>
 
-                {responsive && <>
-                    <a href="https://github.com/TaliAly/Neku">About <BsGithub /> </a>
+                <Link href="/mangas"><a> Mangas <AiFillBook /> </a></Link>
+                {
+                    !responsive && <Link href="/search"><a>Search</a></Link>
+                }
 
-                    <div className={style.menu}>
-                        <Link href="/search"><a>Search</a></Link>
-                        <p>Random</p>
-                        <p>A - Z</p>
-                        <p>Completos</p>
-                    </div>
+                {
+                    responsive && <>
+                        <a href="https://github.com/TaliAly/Neku">About<BsGithub /> </a>
 
-                </>}
+                        <div className={style.menu}>
+                            <Link href="/search"><a>Search <BiSearch /></a></Link>
+                            <p>Random</p>
+                            <p>A - Z</p>
+                            <p>Completos</p>
+                        </div>
+
+                    </>}
             </span>
         </span>
     )

@@ -1,13 +1,14 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { PropsData } from "../../../components/Type";
+import { BookInfo, PropsData } from "../../../components/Type";
 import { useRouter } from "next/router";
 
 import Head from "next/head"
 import Layout from "../../../components/layout";
 import Library from "../../../components/library";
 import Pagination from "../../../components/paginations";
-import usePagination from '../../../components/paginations/usePagination';
+import paginationFetch from '../../../components/paginations/paginationfetch';
 import { useEffect, useState } from "react";
+import ErrorPage from "next/error"
 
 interface Data {
 	name: string,
@@ -18,11 +19,6 @@ interface spp extends PropsData {
 	title: string
 	genreName: string,
 }
-
-interface Query {
-	path: string,
-	page: string,
-}
 // type Title = boolean | string;
 
 // The real deal!
@@ -30,15 +26,16 @@ interface Query {
 const Genres = ({ data, genreName }: spp) => {
 	const [fetchData, setFetchData] = useState(data);
 	const Router = useRouter();
-	const query: any = Router.query
+	const { genres, page }: any = Router.query;
+
 
 	useEffect(() => {
+		if (Router.isReady) {
 
-		usePagination(query, setFetchData, "genres")
+			paginationFetch({ genres, page }, setFetchData, "genres")
+		}
 
-	}, [query.page])
-
-	if (Router.isFallback) return null;
+	}, [page])
 
 
 	return (
@@ -49,7 +46,9 @@ const Genres = ({ data, genreName }: spp) => {
 			</Head>
 
 			<h1>Generos para {genreName} </h1>
-			{fetchData &&
+			{/* (Router.isFallback || Router.isReady) */}
+
+			{!!genres ?
 				<>
 					<Library data={fetchData.data}></Library>
 					<Pagination
@@ -60,6 +59,8 @@ const Genres = ({ data, genreName }: spp) => {
 						last_visible_page={fetchData.pagination?.last_visible_page}
 					/>
 				</>
+				:
+				<h1>Error!</h1>
 			}
 
 		</Layout>
@@ -75,53 +76,40 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 	let paths: any = {}
 
-	if (!!data && !!data.data) {
+	paths = data.data?.map((r: Data) => ({
+		params: { genres: `${r?.mal_id}` },
+	}))
 
-		paths = data.data?.map((r: Data) => ({
-			params: { genres: `${r?.mal_id}` },
-		}))
-
-	} else { paths = { params: {} } }
-
-	return { paths, fallback: true }
+	return { paths, fallback: false }
 }
-
-
 
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 	const genres = params?.genres
 
-	if (params && genres) {
+	const data = ( await (await fetch(`https://api.jikan.moe/v4/manga?genre=${genres}&sfw=true`)).json() )
 
-		const data = await fetch(`https://api.jikan.moe/v4/manga?genres=${genres}`).then(r => r.json())
-		const resGenre = await fetch(`https://api.jikan.moe/v4/genres/manga`).then(r => r.json());
+	const resGenre = ( await ( await fetch(`https://api.jikan.moe/v4/genres/manga`)).json() )
 
-		let genreName = null
+	let genreName = ""
 
-		const getGenreName = () => {
-			resGenre.data.map((target: any) => {
-				if (target.mal_id == genres) {
-					genreName = target.name
-				}
-			})
-		}
-		getGenreName()
+	const getGenreName = () => {
+		resGenre?.data?.map( ({mal_id, name}:any) => {
 
-		return {
-			props: {
-				data,
-				genreName
-			},
-			revalidate: 86400,
-		}
+			if (genres == mal_id) {
+				genreName = name
+			}
+
+		})
 	}
+	getGenreName()
 
 	return {
 		props: {
-			error: true
-		}
+			data,
+			genreName
+		},
+		revalidate: 86400,
 	}
-
 }
