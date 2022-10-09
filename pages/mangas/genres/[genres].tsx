@@ -88,14 +88,16 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 	const genres = params?.genres
 
-	const data = ( await (await fetch(`https://api.jikan.moe/v4/manga?genre=${genres}&sfw=true`)).json() )
+	console.log(genres)
 
-	const resGenre = ( await ( await fetch(`https://api.jikan.moe/v4/genres/manga`)).json() )
+	const data = (await (await fetch(`https://api.jikan.moe/v4/manga?genres=${genres}&sfw=true`)).json())
+
+	const resGenre = (await (await fetch(`https://api.jikan.moe/v4/genres/manga`)).json())
 
 	let genreName = ""
 
 	const getGenreName = () => {
-		resGenre?.data?.map( ({mal_id, name}:any) => {
+		resGenre?.data?.map(({ mal_id, name }: any) => {
 
 			if (genres == mal_id) {
 				genreName = name
