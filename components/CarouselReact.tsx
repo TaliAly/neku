@@ -22,7 +22,7 @@ function CarouselReact({ data }: any) {
 
     >
       {
-        data.map(({ mal_id, title, images, synopsis }: Target) => {
+        data?.map(({ mal_id, title, images, synopsis }: Target) => {
           return <Tops image={images.webp.image_url} name={title} key={mal_id} mal_id={mal_id} synopsis={synopsis} />
         })
       }
