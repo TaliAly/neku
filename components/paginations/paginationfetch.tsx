@@ -7,13 +7,9 @@ type Param = string | null
 
 export default async function paginationFetch(routerQuery: Query, setFetch: Function, param: Param) {
 
-
-    if ((routerQuery.page != undefined)) {
         let data = {}
 
         // Checks if the page already have a query or not
-        if (!!param) {
-
             let page = routerQuery.page
             let genres = routerQuery.genres
 
@@ -25,7 +21,4 @@ export default async function paginationFetch(routerQuery: Query, setFetch: Func
             }
 
             setFetch(data)
-
-        }
-    }
 }

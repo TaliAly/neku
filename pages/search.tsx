@@ -96,9 +96,11 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
 
     if (!!page) {
-        data = await fetch(`https://api.jikan.moe/v4/manga?q=${search}&order_by=popularity&type=manga&sfw=true&page=${page}`, options).then(r => r.json())
+        data = await fetch(`https://api.jikan.moe/v4/manga?q=${search}&order_by=popularity&type=manga&page=${page}`, options)
+        .then(r => r.json())
     } else {
-        data = await fetch(`https://api.jikan.moe/v4/manga?q=${search}&order_by=popularity&type=manga&sfw=true`, options).then(r => r.json())
+        data = await fetch(`https://api.jikan.moe/v4/manga?q=${search}&order_by=popularity&type=manga`, options)
+        .then(r => r.json())
     }
 
     return {

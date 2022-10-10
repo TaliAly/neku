@@ -55,11 +55,7 @@ const Index: NextPage = ({ top, book }: any) => {
 
 export const getStaticProps: GetStaticProps = async () => {
 
-    const options = {
-        method: 'GET',
-    };
-
-    const topRes = await fetch('https://api.jikan.moe/v4/top/manga?limit=6', options)
+    const topRes = await fetch('https://api.jikan.moe/v4/top/manga?limit=6')
     const top = await topRes.json();
 
     const bookRes = await fetch("https://api.jikan.moe/v4/manga?order_by=popularity")

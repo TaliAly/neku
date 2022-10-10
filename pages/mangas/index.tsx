@@ -66,12 +66,14 @@ export default Mangas
 
 export const getStaticProps: GetStaticProps = async () => {
 
-    const getGenres = await fetch("https://api.jikan.moe/v4/genres/manga")
-    const resGenres = await getGenres.json()
-
-    const getMangas = await fetch("https://api.jikan.moe/v4/manga")
-    const resMangas = await getMangas.json()
-
+        const [getGenres, getMangas] = await Promise.all([
+            fetch("https://api.jikan.moe/v4/genres/manga"), 
+            fetch(`https://api.jikan.moe/v4/manga`)
+            ]);
+        const [resGenres, resMangas] = await Promise.all([
+            getGenres.json(), 
+            getMangas.json()
+  ]);
 
     return {
         props: {
