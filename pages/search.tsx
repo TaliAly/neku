@@ -31,7 +31,7 @@ function Search({ data }: PropsData) {
     return (
         <div>
             <Head>
-                <title>Buscar "{`${query.search}`}" </title>
+                <title>Buscar {`"${query.search}"`} </title>
                 <meta
                     name="og:description"
                     content={`Buscaste por ${query.search?.toString()}!`}
