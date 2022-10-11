@@ -29,15 +29,6 @@ const Genres = ({ data, genreName }: spp) => {
 	const { genres, page }: any = Router.query;
 
 
-	useEffect(() => {
-		if (Router.isReady) {
-
-			paginationFetch({ genres, page }, setFetchData, "genres")
-		}
-
-	}, [page])
-
-
 	return (
 		<Layout>
 
@@ -72,65 +63,28 @@ const Genres = ({ data, genreName }: spp) => {
 }
 export default Genres
 
-
-
-// export const getStaticPaths: GetStaticPaths = async () => {
-
-// 	const data = await fetch(`https://api.jikan.moe/v4/genres/manga`).then(r => r.json());
-
-// 	let paths: any = {}
-
-// 	paths = data.data?.map((r: Data) => ({
-// 		params: { genres: `${r?.mal_id}` },
-// 	}))
-
-// 	return { paths, fallback: false }
-// }
-
-
-// export const getStaticProps: GetStaticProps = async ({ params }) => {
-
-// 	const genres = params?.genres
-
-
-// 	const resMangas = await fetch(`https://api.jikan.moe/v4/manga?genres=${genres}`)
-// 	const getMangas = await resMangas.json()
-
-// 	const resGenres = await fetch(`https://api.jikan.moe/v4/genres/manga`)
-// 	const getGenres = await resGenres.json()
-
-
-// 	const genreName = () => {
-// 		for (let i = 0; i < getGenres.data?.length; i++) {
-// 			if (genres == getGenres.data[i]?.mal_id) {
-// 				return getGenres.data[i]?.name
-// 			}
-// 			continue
-// 		}
-// 		return "No sé :("
-// 	}
-
-// 	return {
-// 		props: {
-// 			data: getMangas,
-// 			genreName: genreName(),
-// 		},
-// 		revalidate: 86400,
-// 	}
-// }
-
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
 	const genres = query?.genres
+	const page = query?.page
 
-	const resMangas = await fetch(`https://api.jikan.moe/v4/manga?genres=${genres}`)
-	const getMangas = await resMangas.json()
+	let getMangas = {}
+
+	if (!!page) {
+		const resMangas = await fetch(`https://api.jikan.moe/v4/manga?genres=${genres}&page=${page}`)
+		getMangas = await resMangas.json()
+	}
+	else {
+		const resMangas = await fetch(`https://api.jikan.moe/v4/manga?genres=${genres}`)
+		getMangas = await resMangas.json()
+	}
 
 	const resGenres = await fetch(`https://api.jikan.moe/v4/genres/manga`)
 	const getGenres = await resGenres.json()
 
 
 	const genreName = () => {
+
 		for (let i = 0; i < getGenres.data?.length; i++) {
 			if (genres == getGenres.data[i]?.mal_id) {
 				return getGenres.data[i]?.name
@@ -143,7 +97,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 	return {
 		props: {
 			data: getMangas,
-			genreName: genreName(),
+			genreName: `${genreName()}`,
 		},
 	}
 }
