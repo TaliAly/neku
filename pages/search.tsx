@@ -31,7 +31,7 @@ function Search({ data }: PropsData) {
     return (
         <div>
             <Head>
-                <title>Buscar {`${query.search}`}</title>
+                <title>Buscar "{`${query.search}`}" </title>
                 <meta
                     name="og:description"
                     content={`Buscaste por ${query.search?.toString()}!`}
@@ -93,10 +93,10 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
 
     if (!!page) {
-        data = await fetch(`https://api.jikan.moe/v4/manga?q=${search}&order_by=popularity&type=manga&page=${page}`, options)
+        data = await fetch(`https://api.jikan.moe/v4/manga?q=${search}&order_by=popularity&type=manga&page=${page}&limit=30`, options)
             .then(r => r.json())
     } else {
-        data = await fetch(`https://api.jikan.moe/v4/manga?q=${search}&order_by=popularity&type=manga`, options)
+        data = await fetch(`https://api.jikan.moe/v4/manga?q=${search}&order_by=popularity&type=manga&limit=30`, options)
             .then(r => r.json())
     }
 

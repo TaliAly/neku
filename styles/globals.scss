@@ -2,7 +2,8 @@
 
 :root {
   --bg: #fdfdfd;
-  --font: #1d1d1d;
+  --color: #fff;
+  --color-black: #000;
   --bg-comp: #47637D;
   --fg: #2F97C1;
   --fg-comp: #25283D;
@@ -23,6 +24,7 @@ body.dark-mode {
 
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Poppins&display=swap');
 
 html,
 body {
@@ -32,9 +34,9 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   line-height: 1.4;
   transition: color .2s ease-out, background-color .2s ease;
+  font-family: "poppins", "Segoe UI", sans-serif
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Poppins&display=swap');
 
 input {
   font-family: "poppins", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

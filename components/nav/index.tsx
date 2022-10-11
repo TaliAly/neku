@@ -10,19 +10,18 @@ import { useEffect, useState } from "react"
 
 export default function Nav() {
     const { responsive } = useResponsive();
-    const [respon, setRespon] = useState(responsive);
-
-    useEffect(() => {
-        setRespon(responsive)
-    }, [responsive])
 
 
     return (
         <nav className={style.nav}>
-            <Link href="/"><a> <img src="/neku.ico" alt="neku" /><h1>Neku</h1></a></Link>
+            <div>
+                <p> <Menu /> </p>
+                <Link href="/"><a> <img src="/neku.ico" alt="neku" /><h1>Neku</h1></a></Link>
+            </div>
+
 
             <div>
-                {!respon &&
+                {!responsive &&
                     <>
                         <div>
                             <SearchBar />
@@ -32,8 +31,6 @@ export default function Nav() {
 
                 }
 
-
-                <p> <Menu /> </p>
             </div>
         </nav>
     )

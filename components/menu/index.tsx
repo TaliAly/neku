@@ -23,7 +23,7 @@ function Modal({ setCloseModal }: any) {
 
     useEffect(() => {
         gsap.set(modal.current, { opacity: 0, y: -10 })
-        gsap.to(modal.current, { opacity: 1, y: +10 })
+        gsap.to(modal.current, { opacity: 1, y: +10 }).duration(.4)
 
     }, [])
 
@@ -31,8 +31,8 @@ function Modal({ setCloseModal }: any) {
     const handleClick = async (target: any) => {
 
         if (!(target.target == ref.current || target.target.parentElement == ref.current)) {
-            await gsap.set(modal.current, { animationDuration: .2 })
-            await gsap.to(modal.current, { opacity: 0, y: 10 });
+            await gsap.set(modal.current, { y: +10 })
+            await gsap.to(modal.current, { opacity: 0, y: -10 }).duration(.4);
             setCloseModal(false);
         }
     }
@@ -72,7 +72,7 @@ function Modal({ setCloseModal }: any) {
 
                             <Link href="/mangas"><a> Mangas <AiFillBook /> </a></Link>
 
-                            <Link href="/search"><a>Search</a></Link>
+                            <Link href="/search"><a>Search <BiSearch /></a></Link>
                         </>
                 }
             </span>

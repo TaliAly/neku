@@ -9,19 +9,6 @@ import Layout from "../../components/layout";
 const Book = dynamic(() => import("../../components/library/Book"))
 import style from "./../../styles/manga.module.scss"
 
-
-export const getServerSideProps: GetServerSideProps = async context => {
-
-    const { manga } = context.query;
-
-    const res = await fetch(`https://api.jikan.moe/v4/manga/${manga}/full`)
-    const data = await res.json()
-
-    return { props: { data } }
-
-}
-
-
 function Manga({ data }: PropsData) {
 
     const {
@@ -85,3 +72,14 @@ function Manga({ data }: PropsData) {
 }
 
 export default Manga
+
+export const getServerSideProps: GetServerSideProps = async context => {
+
+    const { manga } = context.query;
+
+    const res = await fetch(`https://api.jikan.moe/v4/manga/${manga}/full`)
+    const data = await res.json()
+
+    return { props: { data } }
+
+}

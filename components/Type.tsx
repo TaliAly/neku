@@ -7,6 +7,7 @@ export interface BookInfo {
         webp: {
             image_url: string,
             small_image_url: string,
+            large_image_url: string,
         }
     }
     status: string,
@@ -17,19 +18,6 @@ export interface BookInfo {
         mal_id: string,
         name: string
     }[],
-}
-
-export interface Target {
-    mal_id: string,
-    title: string,
-    images: {
-        webp: {
-            image_url: string,
-            small_image_url: string,
-            large_image_url: string,
-        }
-    }
-    synopsis: string,
 }
 
 export interface PropsData {

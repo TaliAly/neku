@@ -31,7 +31,7 @@ function SearchBarBig() {
             </form>
             <span>
                 <p><Link href="/mangas"><a>Géneros</a></Link></p>
-                <p>Random</p>
+                <p><Link href="/random"><a>Random</a></Link></p>
                 <p>A-Z</p>
                 <p>Completos</p>
             </span>
