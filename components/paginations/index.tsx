@@ -16,8 +16,8 @@ interface pagProps {
 }
 
 function Pagination({ path, current_page, last_visible_page }: pagProps) {
-    const { responsive } = useResponsive()
 
+    const { responsive } = useResponsive()
     const pages: number[] = [];
 
     for (let index = 0; index < last_visible_page; index++) {

@@ -1,19 +1,12 @@
-// import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next'
-import { GetServerSideProps } from "next";
-import { PropsData } from "../../../components/Type";
-import { useRouter } from "next/router";
+import { GetServerSideProps } from "next"
+import { PropsData } from "../../../components/Type"
+import { useRouter } from "next/router"
 
 import Head from "next/head"
-import Layout from "../../../components/layout";
-import Library from "../../../components/library";
-import Pagination from "../../../components/paginations";
-import paginationFetch from '../../../components/paginations/paginationfetch';
-import { useEffect, useState } from "react";
-
-interface Data {
-	name: string,
-	mal_id: number,
-}
+import Layout from "../../../components/layout"
+import Library from "../../../components/library"
+import Pagination from "../../../components/paginations"
+import { useEffect, useState } from "react"
 
 interface spp extends PropsData {
 	title: string
@@ -26,7 +19,10 @@ interface spp extends PropsData {
 const Genres = ({ data, genreName }: spp) => {
 	const [fetchData, setFetchData] = useState(data);
 	const Router = useRouter();
-	const { genres, page }: any = Router.query;
+
+	useEffect(() => {
+		setFetchData(data)
+	}, [data])
 
 
 	return (
@@ -45,18 +41,15 @@ const Genres = ({ data, genreName }: spp) => {
 			</Head>
 
 			<h1>Generos para {genreName} </h1>
-			{/* (Router.isFallback || Router.isReady) */}
 
-			<>
-				<Library data={fetchData.data}></Library>
-				<Pagination
-					items={fetchData.pagination?.items}
-					current_page={fetchData.pagination?.current_page}
-					path={Router.pathname.replace("[genres]", `${Router.query?.genres}`)}
-					page={`${Router.query?.page}`}
-					last_visible_page={fetchData.pagination?.last_visible_page}
-				/>
-			</>
+			<Library data={fetchData.data}></Library>
+			<Pagination
+				items={fetchData.pagination?.items}
+				current_page={fetchData.pagination?.current_page}
+				path={Router.pathname.replace("[genres]", `${Router.query?.genres}`)}
+				page={`${Router.query?.page}`}
+				last_visible_page={fetchData.pagination?.last_visible_page}
+			/>
 
 		</Layout>
 	)

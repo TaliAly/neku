@@ -16,18 +16,15 @@ import { PropsData } from "../components/Type"
 
 function Search({ data }: PropsData) {
 
-    const [getData, setGetData] = useState(data);
-    const Router = useRouter();
-    const { responsive } = useResponsive();
-    const fetchData = data.pagination;
+    const [getData, setGetData] = useState(data)
+    const Router = useRouter()
+    const { responsive } = useResponsive()
+    const fetchData = data.pagination
     const query: any = Router.query
-
-    // console.log(getData)
 
 
     useEffect(() => {
         setGetData(data)
-
     }, [data])
 
 
@@ -97,10 +94,10 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
     if (!!page) {
         data = await fetch(`https://api.jikan.moe/v4/manga?q=${search}&order_by=popularity&type=manga&page=${page}`, options)
-        .then(r => r.json())
+            .then(r => r.json())
     } else {
         data = await fetch(`https://api.jikan.moe/v4/manga?q=${search}&order_by=popularity&type=manga`, options)
-        .then(r => r.json())
+            .then(r => r.json())
     }
 
     return {
