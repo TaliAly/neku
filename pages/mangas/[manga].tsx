@@ -57,7 +57,8 @@ function Manga({ data }: PropsData) {
                             images={{
                                 webp: {
                                     image_url: "",
-                                    small_image_url: ""
+                                    small_image_url: "",
+                                    large_image_url: ""
                                 }
                             }}
                             volumes={volumes} />
