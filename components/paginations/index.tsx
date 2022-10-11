@@ -41,7 +41,7 @@ function Pagination({ path, current_page, last_visible_page }: pagProps) {
                 return [1, "...", ...show]
             }
 
-            return [1, "...", ...pages.splice(current_page - 2, 5), "...", last_visible_page]
+            return [1, "...", ...pages.splice(current_page - 3, 5), "...", last_visible_page]
         }
 
 

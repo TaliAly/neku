@@ -9,10 +9,11 @@ interface Props {
     name: string,
     mal_id: string,
     synopsis: string,
+    background: string,
 }
 
-function Tops({ image, mal_id, name, synopsis }: Props) {
-    const { isEnabled, setIsEnabled } = useDarkMode()
+function Tops({ image, mal_id, name, synopsis, background }: Props) {
+    const { isEnabled } = useDarkMode()
 
     let Class = (isEnabled) ? style.tops_dark : style.tops
 
@@ -21,7 +22,6 @@ function Tops({ image, mal_id, name, synopsis }: Props) {
             <a>
                 <div className={Class}>
                     <Image src={image} alt={name} width={250} height={300} className={style.top} />
-
                     <span>
                         <h4>{name}</h4>
                         <p>{synopsis}</p>

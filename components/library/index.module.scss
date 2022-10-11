@@ -7,7 +7,7 @@
     width: 90%;
 
     .library {
-        gap: .7rem;
+        gap: 2px;
         display: grid;
         place-items: center;
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));

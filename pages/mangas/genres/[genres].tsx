@@ -1,5 +1,6 @@
-import { GetStaticPaths, GetStaticProps } from 'next'
-import { BookInfo, PropsData } from "../../../components/Type";
+// import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next'
+import { GetServerSideProps } from "next";
+import { PropsData } from "../../../components/Type";
 import { useRouter } from "next/router";
 
 import Head from "next/head"
@@ -8,7 +9,6 @@ import Library from "../../../components/library";
 import Pagination from "../../../components/paginations";
 import paginationFetch from '../../../components/paginations/paginationfetch';
 import { useEffect, useState } from "react";
-import ErrorPage from "next/error"
 
 interface Data {
 	name: string,
@@ -43,6 +43,14 @@ const Genres = ({ data, genreName }: spp) => {
 
 			<Head>
 				<title>{`Neku | ${genreName}`}</title>
+				<meta
+					name="description"
+					content={`${genreName} |Buscando por generos un manga que se vuelva tu favorito!.`}
+				/>
+				<meta
+					name="og:description"
+					content={`${genreName} |Buscando por generos un manga que se vuelva tu favorito!.`}
+				/>
 			</Head>
 
 			<h1>Generos para {genreName} </h1>
@@ -66,24 +74,54 @@ export default Genres
 
 
 
-export const getStaticPaths: GetStaticPaths = async () => {
+// export const getStaticPaths: GetStaticPaths = async () => {
 
-	const data = await fetch(`https://api.jikan.moe/v4/genres/manga`).then(r => r.json());
+// 	const data = await fetch(`https://api.jikan.moe/v4/genres/manga`).then(r => r.json());
 
-	let paths: any = {}
+// 	let paths: any = {}
 
-	paths = data.data?.map((r: Data) => ({
-		params: { genres: `${r?.mal_id}` },
-	}))
+// 	paths = data.data?.map((r: Data) => ({
+// 		params: { genres: `${r?.mal_id}` },
+// 	}))
 
-	return { paths, fallback: false }
-}
+// 	return { paths, fallback: false }
+// }
 
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+// export const getStaticProps: GetStaticProps = async ({ params }) => {
 
-	const genres = params?.genres
+// 	const genres = params?.genres
 
+
+// 	const resMangas = await fetch(`https://api.jikan.moe/v4/manga?genres=${genres}`)
+// 	const getMangas = await resMangas.json()
+
+// 	const resGenres = await fetch(`https://api.jikan.moe/v4/genres/manga`)
+// 	const getGenres = await resGenres.json()
+
+
+// 	const genreName = () => {
+// 		for (let i = 0; i < getGenres.data?.length; i++) {
+// 			if (genres == getGenres.data[i]?.mal_id) {
+// 				return getGenres.data[i]?.name
+// 			}
+// 			continue
+// 		}
+// 		return "No sé :("
+// 	}
+
+// 	return {
+// 		props: {
+// 			data: getMangas,
+// 			genreName: genreName(),
+// 		},
+// 		revalidate: 86400,
+// 	}
+// }
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+
+	const genres = query?.genres
 
 	const resMangas = await fetch(`https://api.jikan.moe/v4/manga?genres=${genres}`)
 	const getMangas = await resMangas.json()
@@ -92,21 +130,20 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 	const getGenres = await resGenres.json()
 
 
-	let genreName = ""
-
-	for (let i = 0; i < getGenres.data?.length; i++) {
-		if (genres == getGenres.data[i]?.mal_id) {
-			genreName = getGenres.data[i]?.name
-			break
+	const genreName = () => {
+		for (let i = 0; i < getGenres.data?.length; i++) {
+			if (genres == getGenres.data[i]?.mal_id) {
+				return getGenres.data[i]?.name
+			}
+			continue
 		}
-		continue
-		}
+		return "No sé :("
+	}
 
 	return {
 		props: {
 			data: getMangas,
-			genreName
+			genreName: genreName(),
 		},
-		revalidate: 86400,
 	}
 }

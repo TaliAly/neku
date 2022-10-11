@@ -19,11 +19,10 @@ function CarouselReact({ data }: any) {
       showThumbs={false}
       showArrows={!responsive}
       showIndicators={!responsive}
-
     >
       {
         data?.map(({ mal_id, title, images, synopsis }: Target) => {
-          return <Tops image={images.webp.image_url} name={title} key={mal_id} mal_id={mal_id} synopsis={synopsis} />
+          return <Tops image={images.webp.image_url} name={title} key={mal_id} mal_id={mal_id} synopsis={synopsis} background={images.webp.large_image_url} />
         })
       }
     </Carousel>

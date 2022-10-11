@@ -30,7 +30,7 @@ function SearchBarBig() {
                 <button type="submit"><MdOutlineSearch /></button>
             </form>
             <span>
-                <p><Link href="/genres"><a>Géneros</a></Link></p>
+                <p><Link href="/mangas"><a>Géneros</a></Link></p>
                 <p>Random</p>
                 <p>A-Z</p>
                 <p>Completos</p>

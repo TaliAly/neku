@@ -11,7 +11,7 @@
         width: 150px;
         object-fit: cover;
         aspect-ratio: 1.5 / 2;
-        border-radius: 5px;
+        border-radius: 3px;
         background-color: var(--fg-comp);
         display: flex;
         align-items: center;
@@ -34,7 +34,7 @@
 
             &:hover {
                 backdrop-filter: brightness(60%);
-                color: #fff;
+                color: var(--font-alt);
             }
 
             display: flex;
