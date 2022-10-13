@@ -5,7 +5,6 @@ import Menu from "../menu"
 import { AiFillHome } from "react-icons/ai"
 import SearchBar from "./../searchBar"
 import useResponsive from "../useResponsive"
-import { useEffect, useState } from "react"
 
 
 export default function Nav() {
@@ -14,13 +13,13 @@ export default function Nav() {
 
     return (
         <nav className={style.nav}>
-            <div>
-                <p> <Menu /> </p>
+            <div className={style.left}>
+                <p className={style.menu}> <Menu /> </p>
                 <Link href="/"><a> <img src="/neku.ico" alt="neku" /><h1>Neku</h1></a></Link>
             </div>
 
 
-            <div>
+            <div className={style.right}>
                 {!responsive &&
                     <>
                         <div>

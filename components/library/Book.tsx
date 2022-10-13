@@ -8,7 +8,9 @@ interface Props extends BookInfo {
     cover: string,
 }
 
-function Book({ genres, cover, synopsis, title, chapters, status, title_japanese }: Props) {
+function Book(
+    { genres, cover, synopsis, title, chapters, status, title_japanese, rank, score, volumes }: Props
+) {
     return (
         <div className={style.book}>
 
@@ -37,17 +39,27 @@ function Book({ genres, cover, synopsis, title, chapters, status, title_japanese
                             })
                         }
                     </div>
-
                 </span>
 
             </div>
 
             <div className={style.about}>
 
+                <span>
+                    <div className={style.status}>
+                        <p> Rank: {rank}</p>
+                        <p>Score: {score || 0}</p>
+                        <p>status: {status}</p>
+                    </div>
 
-                <div className={style.chapters}>
-                    <h2>Capitulos {chapters}</h2>
-                </div>
+
+                    <div className={style.chapters}>
+                        {chapters
+                            ? <h2>Chapters {chapters}</h2>
+                            : <h2>Couldn't find chapters</h2>
+                        }
+                    </div>
+                </span>
 
                 <div>
                     <p>{synopsis}</p>

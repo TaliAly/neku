@@ -19,3 +19,24 @@
         margin-left: 1rem;
     }
 }
+
+.coverInfo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: .7rem;
+    height: auto;
+    width: 90%;
+
+    .library {
+        gap: 5px;
+        display: grid;
+        place-items: start;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+
+    h2 {
+        font-size: 42px;
+        margin-left: 1rem;
+    }
+}

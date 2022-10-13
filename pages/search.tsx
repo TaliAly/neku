@@ -7,7 +7,7 @@ import useResponsive from "../components/useResponsive"
 // Components
 
 const Library = dynamic(() => import("../components/library"))
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 import Head from "next/head"
 import SearchBar from "../components/searchBar"
 import Pagination from "../components/paginations"

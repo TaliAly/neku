@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next"
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 import { PropsData } from "../components/Type";
 
 import Head from "next/head";

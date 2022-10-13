@@ -1,11 +1,11 @@
-import { GetServerSideProps } from "next";
-import { PropsData } from "../../components/Type";
-import dynamic from "next/dynamic";
+import { GetServerSideProps } from "next"
+import { PropsData } from "../../components/Type"
+import dynamic from "next/dynamic"
 
 // Components
-import Head from "next/head";
-import DeadEnd from "../../components/deadEnd";
-import Layout from "../../components/layout";
+import Head from "next/head"
+import DeadEnd from "../../components/deadEnd"
+import Layout from "../../components/Layout"
 const Book = dynamic(() => import("../../components/library/Book"))
 import style from "./../../styles/manga.module.scss"
 
@@ -19,7 +19,10 @@ function Manga({ data }: PropsData) {
         title,
         volumes,
         title_japanese,
-        chapters } = data.data;
+        chapters,
+        rank,
+        score } = data.data;
+
 
     return (
         <Layout>
@@ -61,7 +64,10 @@ function Manga({ data }: PropsData) {
                                     large_image_url: ""
                                 }
                             }}
-                            volumes={volumes} />
+                            volumes={volumes}
+                            score={score}
+                            rank={rank}
+                        />
                     </>
                     || <DeadEnd />
                 }

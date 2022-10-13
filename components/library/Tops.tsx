@@ -14,7 +14,7 @@ interface Props {
     japanese_name: string,
 }
 
-function Tops({ image, mal_id, name, synopsis, background, japanese_name }: Props) {
+export default function Tops({ image, mal_id, name, synopsis, background, japanese_name }: Props) {
     const { isEnabled } = useDarkMode()
     const { responsive } = useResponsive()
 
@@ -24,7 +24,7 @@ function Tops({ image, mal_id, name, synopsis, background, japanese_name }: Prop
         <Link href={`/mangas/${mal_id}`}>
             <a>
                 <div className={Class}>
-                    <Image src={image} alt={name} width={250} height={300} className={style.top} />
+                    <Image src={image} alt={name} width={240} height={290} className={style.top} />
                     <span className={style.info}>
                         <h4>{name}</h4>
                         {
@@ -42,5 +42,3 @@ function Tops({ image, mal_id, name, synopsis, background, japanese_name }: Prop
         </Link>
     )
 }
-
-export default Tops

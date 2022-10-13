@@ -1,12 +1,17 @@
 .searchBar {
 
-    margin: 1rem;
+    margin: 0 0 1rem 0;
     display: grid;
     place-items: center;
+    padding: 2rem 0;
+
+    background-color: var(--fg-comp);
+    color: var(--color);
 
 
     h2 {
         margin: .5rem 0;
+        color: var(--color);
     }
 
 
@@ -34,7 +39,7 @@
         outline: var(--outline);
         border: 2px solid var(--clr);
         outline-offset: -1px;
-        transition: outline-offset 100ms ease;
+        transition: outline-offset 100ms ease-out;
 
         &:focus,
         &:hover {
@@ -51,7 +56,7 @@
             background-color: #4b429c;
         }
 
-        transition: background-color .1s ease;
+        transition: background-color .1s ease-out;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -85,7 +90,7 @@
 
             padding: .3rem;
             border-radius: 10px;
-            transition: background-color .2s ease;
+            transition: background-color .2s ease-out;
         }
     }
 }

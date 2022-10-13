@@ -10,7 +10,6 @@ export interface BookInfo {
             large_image_url: string,
         }
     }
-    status: string,
     synopsis: string,
     chapters: number,
     volumes: number,
@@ -18,6 +17,9 @@ export interface BookInfo {
         mal_id: string,
         name: string
     }[],
+    rank: number,
+    score: number,
+    status: string,
 }
 
 export interface PropsData {

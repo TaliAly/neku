@@ -1,4 +1,4 @@
-import Layout from "../../components/layout";
+import Layout from "../../components/Layout";
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import Head from "next/head";
@@ -16,34 +16,31 @@ const Mangas: NextPage = ({ resMangas, resGenres }: any) => {
         <Layout>
 
             <Head>
-                <title>Neku Genres</title>
+                <title>Neku | Genres</title>
             </Head>
 
-            <div className={style.genres}>
-                <h2>Mangas para ver</h2>
+            <div className={style.mangas}>
 
-                <div className={style.content}>
-                    {/* (Router.isFallback || Router.isReady) */}
+                <div className={style.mangas_grid}>
+                    <div>
+                        <h2>Mangas</h2>
+                        <Library data={manga} />
+                    </div>
 
-                    {(resMangas && resGenres) &&
-                        <>
-                            <Library data={manga} />
 
-                            <div>
-                                <h3>Generos</h3>
-                                <div className={style.holder}>
-                                    {
-                                        genres?.map((target: any) => {
-                                            return <p key={target.mal_id}>
-                                                <Link href={`/mangas/genres/${target.mal_id}`}><a>{target.name}</a></Link>
-                                                <br />
-                                            </p>
-                                        })
-                                    }
-                                </div>
-                            </div>
-                        </>
-                    }
+                    <div>
+                        <h3>Generos</h3>
+                        <div className={style.genres_holder}>
+                            {
+                                genres?.map((target: any) => {
+                                    return <p key={target.mal_id}>
+                                        <Link href={`/mangas/genres/${target.mal_id}`}><a>{target.name}</a></Link>
+                                        <br />
+                                    </p>
+                                })
+                            }
+                        </div>
+                    </div>
 
                 </div>
 
@@ -66,14 +63,14 @@ export default Mangas
 
 export const getStaticProps: GetStaticProps = async () => {
 
-        const [getGenres, getMangas] = await Promise.all([
-            fetch("https://api.jikan.moe/v4/genres/manga"), 
-            fetch(`https://api.jikan.moe/v4/manga`)
-            ]);
-        const [resGenres, resMangas] = await Promise.all([
-            getGenres.json(), 
-            getMangas.json()
-  ]);
+    const [getGenres, getMangas] = await Promise.all([
+        fetch("https://api.jikan.moe/v4/genres/manga"),
+        fetch(`https://api.jikan.moe/v4/manga`)
+    ]);
+    const [resGenres, resMangas] = await Promise.all([
+        getGenres.json(),
+        getMangas.json()
+    ]);
 
     return {
         props: {

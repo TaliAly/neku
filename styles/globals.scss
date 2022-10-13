@@ -4,23 +4,21 @@
   --bg: #fdfdfd;
   --color: #fff;
   --color-black: #000;
-  --bg-comp: #47637D;
-  --fg: #2F97C1;
+  --fg: #2E356E;
   --fg-comp: #25283D;
+  --fg-alt: #3d4791;
 
 
 
   // For Dark Theme
-  --bg-dark: #14141f;
-  --font-alt: #fefefe;
+  --bg-dark: #0b0b13;
   --fg-dark: #444469;
 
 }
 
 body.dark-mode {
   background-color: var(--bg-dark);
-  color: var(--font-alt);
-  --bg-comp: #27273F;
+  color: var(--color);
 
 }
 
@@ -33,8 +31,8 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   line-height: 1.4;
-  transition: color .2s ease-out, background-color .2s ease;
-  font-family: "poppins", "Segoe UI", sans-serif
+  transition: color .2s ease-out, background-color .2s ease-out;
+  font-family: "Open sans", "Segoe UI", sans-serif
 }
 
 

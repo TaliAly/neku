@@ -27,7 +27,7 @@
         outline: var(--outline);
         border: 2px solid var(--clr);
         outline-offset: -1px;
-        transition: outline-offset 100ms ease;
+        transition: outline-offset 100ms ease-out;
 
         &:focus,
         &:hover {
@@ -44,13 +44,14 @@
             background-color: #4b429c;
         }
 
-        transition: background-color .1s ease;
+        transition: background-color .1s ease-out;
+
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        background-color: #3f3880;
-        color:var(--font-alt);
+        background-color: var(--fg);
+        color:var(--color);
         font-size: 25px;
         width: 35px;
         height: 35px;

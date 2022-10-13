@@ -3,7 +3,7 @@ import { PropsData } from "../../../components/Type"
 import { useRouter } from "next/router"
 
 import Head from "next/head"
-import Layout from "../../../components/layout"
+import Layout from "../../../components/Layout"
 import Library from "../../../components/library"
 import Pagination from "../../../components/paginations"
 import { useEffect, useState } from "react"

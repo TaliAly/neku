@@ -5,18 +5,18 @@ function isBrowser() {
 }
 
 function useResponsive() {
-    const [responsive, setResponsive] = useState(true)
+    const [responsive, setResponsive] = useState(false)
 
     useEffect(() => {
-        if (window.innerWidth >= 700) {
-            setResponsive(false);
+        if (window.innerWidth <= 700) {
+            setResponsive(true);
         }
 
     }, [isBrowser() && window.innerWidth]);
 
     isBrowser() && window.addEventListener("resize",
         () => {
-            if (window.innerWidth >= 700) {
+            if (window.innerWidth > 700) {
                 setResponsive(false);
             }
             else if (window.innerWidth <= 700) {

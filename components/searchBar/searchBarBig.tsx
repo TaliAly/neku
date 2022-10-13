@@ -24,9 +24,9 @@ function SearchBarBig() {
     return (
         <div className={style.searchBar}>
 
-            <h2>¿Qué leeras hoy?</h2>
+            <h2>What you gonna read today?</h2>
             <form onSubmit={getForm}>
-                <input type="text" ref={queryInput} placeholder="busca un manga" />
+                <input type="text" ref={queryInput} placeholder="Search for a Manga" />
                 <button type="submit"><MdOutlineSearch /></button>
             </form>
             <span>

@@ -4,11 +4,11 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     place-items: center;
-    background-color: var(--fg-comp);
-    color: var(--font-alt);
-    height: 350px;
-    width: 97%;
+    color: var(--font);
+    height: 300px;
+    width: 90%;
     margin: 0 auto;
+    transition: color .2s ease-out;
 
     img {
         border-radius: 10px;
@@ -44,8 +44,9 @@
 
 }
 
-.tops_dark {
-    background-color: var(--bg-comp);
+.tops {
+    box-shadow: 0 0 6px #414141;
+
 }
 
 @media screen and (max-width:700px) {
@@ -70,11 +71,6 @@
             position: absolute;
             bottom: 30px;
             left: 0;
-
-            h4,
-            h5 {
-                text-shadow: 1px 1px #000, -1px 1px #000, -1px -1px #000, 1px -1px #000;
-            }
         }
     }
 }

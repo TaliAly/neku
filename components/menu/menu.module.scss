@@ -6,6 +6,8 @@
     width: 100%;
     height: 100vh;
     cursor: default;
+    background-color: #00000040;
+    transition: background-color .2s ease-out;
 
 
     &>span {
@@ -24,15 +26,14 @@
         border-radius: 10px;
         background-color: var(--bg);
 
-        svg,
-        .p {
+        svg {
             pointer-events: none;
         }
 
         p,
         a {
             &:hover {
-                background-color: #287bda;
+                background-color: #ccc;
                 cursor: pointer;
             }
 
@@ -42,7 +43,7 @@
             display: inline-flex;
             align-items: center;
             transition: background-color .2s ease-out,
-            border-radius .2s ease-out;
+            color .2s ease-out;
 
             padding: .5rem .7rem;
             width: 90%;

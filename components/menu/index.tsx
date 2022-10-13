@@ -23,28 +23,32 @@ function Modal({ setCloseModal }: any) {
 
     useEffect(() => {
         gsap.set(modal.current, { opacity: 0, y: -10 })
+        gsap.set(ref.current, { opacity: 0 })
+
         gsap.to(modal.current, { opacity: 1, y: +10 }).duration(.4)
+        gsap.to(ref.current, { opacity: 1 }).duration(.4)
 
     }, [])
 
-
     const handleClick = async (target: any) => {
 
-        if (!(target.target == ref.current || target.target.parentElement == ref.current)) {
-            await gsap.set(modal.current, { y: +10 })
-            await gsap.to(modal.current, { opacity: 0, y: -10 }).duration(.4);
-            setCloseModal(false);
+        if (!(target.target == modal.current || target.target.parentElement == modal.current)) {
+            gsap.set(modal.current, { y: +10 })
+            gsap.set(ref.current, { opacity: 1 })
+            gsap.to(modal.current, { opacity: 0, y: -10 }).duration(.4)
+            await gsap.to(ref.current, { opacity: 0 }).duration(.4)
+            setCloseModal(false)
         }
     }
     // If you find a way to make this work without another p tag, then let me know, I'm lazy to do this
     return (
-        <span className={style.modal} onClick={handleClick} ref={modal}>
-            <span ref={ref}>
+        <div className={style.modal} onClick={handleClick} ref={ref}>
+            <span ref={modal}>
                 {
                     responsive
                         ?
                         <>
-                            <p onClick={() => { setIsEnabled(!isEnabled) }}>
+                            <p onClick={() => setIsEnabled(!isEnabled)}>
                                 {isEnabled ?
                                     <> Día <MdWbSunny /> </> :
                                     <> Noche <BsFillMoonFill /> </>}
@@ -76,7 +80,7 @@ function Modal({ setCloseModal }: any) {
                         </>
                 }
             </span>
-        </span>
+        </div>
     )
 }
 

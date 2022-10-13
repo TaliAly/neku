@@ -1,0 +1,22 @@
+.book {
+
+    display: flex;
+    max-width: 400px;
+
+    img {
+        object-fit: cover;
+        min-width: 120px !important;
+    }
+
+    h4,
+    p {
+        margin: .4rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        word-wrap: break-word;
+        max-width: 280px;
+    }
+}

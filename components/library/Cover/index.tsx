@@ -17,7 +17,7 @@ function Cover(props: Props) {
             <a>
                 <div className={style.book}>
                     <span>
-                        <Image src={props.image} alt={props.name} width={150} height={200} />
+                        <Image src={props.image} alt={props.name} width={140} height={200} />
                         <p className={style.hover}> <BsBookFill /> </p>
                     </span>
                     <h4>{props.name}</h4>

@@ -13,12 +13,12 @@ function CarouselReact({ data }: any) {
       centerMode={false}
       infiniteLoop={true}
       emulateTouch={true}
-      swipeable={!responsive}
+      swipeable={false}
       stopOnHover={true}
       showStatus={responsive}
       dynamicHeight={false}
       showThumbs={false}
-      showArrows={false}
+      showArrows={true}
       showIndicators={true}
       animationHandler="fade"
       interval={5000}

@@ -7,8 +7,6 @@
     height: 270px;
 
     img {
-        height: 200px;
-        width: 150px;
         object-fit: cover;
         aspect-ratio: 1.5 / 2;
         border-radius: 3px;
@@ -34,7 +32,7 @@
 
             &:hover {
                 backdrop-filter: brightness(60%);
-                color: var(--font-alt);
+                color: var(--color);
             }
 
             display: flex;
@@ -54,7 +52,7 @@
 
             color: transparent;
 
-            transition: color .2s ease,
+            transition: color .2s ease-out,
             backdrop-filter .2s ease;
         }
     }

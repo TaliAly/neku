@@ -1,12 +1,17 @@
 .home {
-    padding: 2rem 0;
+    padding: 1.5rem 0;
 
     .hold {
 
         margin: 1.4rem 0;
 
         .hold_margin {
-            margin: 6rem 0;
+            margin: 4rem 0;
+
+            h3 {
+                margin: 0 0 1rem 4rem;
+                font-size: 25px;
+            }
         }
 
     }
@@ -21,17 +26,18 @@
 
         a {
             &:hover {
-                background-color: var(--bg-comp);
+                background-color: var(--fg-alt);
             }
 
             background-color: var(--fg);
+            color: var(--color);
             padding: 1rem;
             border-radius: 10px;
             align-items: center;
             display: inline-flex;
             gap: 10px;
             font-size: 20px;
-            transition: background-color .3s ease;
+            transition: background-color .3s ease-out;
         }
     }
 }

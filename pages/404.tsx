@@ -1,6 +1,6 @@
 import Link from "next/link"
 import style from "../styles/404.module.scss"
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 import DeadEnd from "./../components/deadEnd"
 
 export default function Custom404() {
