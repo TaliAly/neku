@@ -25,8 +25,8 @@ function Modal({ setCloseModal }: any) {
         gsap.set(modal.current, { opacity: 0, y: -10 })
         gsap.set(ref.current, { opacity: 0 })
 
-        gsap.to(modal.current, { opacity: 1, y: +10 }).duration(.4)
-        gsap.to(ref.current, { opacity: 1 }).duration(.4)
+        gsap.to(modal.current, { opacity: 1, y: +10 }).duration(.2)
+        gsap.to(ref.current, { opacity: 1 }).duration(.2)
 
     }, [])
 
@@ -35,8 +35,8 @@ function Modal({ setCloseModal }: any) {
         if (!(target.target == modal.current || target.target.parentElement == modal.current)) {
             gsap.set(modal.current, { y: +10 })
             gsap.set(ref.current, { opacity: 1 })
-            gsap.to(modal.current, { opacity: 0, y: -10 }).duration(.4)
-            await gsap.to(ref.current, { opacity: 0 }).duration(.4)
+            gsap.to(modal.current, { opacity: 0, y: -10 }).duration(.2)
+            await gsap.to(ref.current, { opacity: 0 }).duration(.2)
             setCloseModal(false)
         }
     }
@@ -62,7 +62,7 @@ function Modal({ setCloseModal }: any) {
                                 <Link href="/search"><a>Search <BiSearch /></a></Link>
                                 <p>Random</p>
                                 <p>A - Z</p>
-                                <p>Completos</p>
+                                <p>Completed</p>
                             </div>
 
                         </>
@@ -70,8 +70,8 @@ function Modal({ setCloseModal }: any) {
                         <>
                             <p onClick={() => { setIsEnabled(!isEnabled) }}>
                                 {isEnabled ?
-                                    <> Día <MdWbSunny /> </> :
-                                    <> Noche <BsFillMoonFill /> </>}
+                                    <> Light <MdWbSunny /> </> :
+                                    <> Dark <BsFillMoonFill /> </>}
                             </p>
 
                             <Link href="/mangas"><a> Mangas <AiFillBook /> </a></Link>

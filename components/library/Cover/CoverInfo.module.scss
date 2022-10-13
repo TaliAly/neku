@@ -20,3 +20,15 @@
         max-width: 280px;
     }
 }
+
+@media screen and (max-width: 700px) {
+    .book {
+
+        width: 100%;
+        max-width: none;
+
+        p {
+            max-width: 100%;
+        }
+    }
+}

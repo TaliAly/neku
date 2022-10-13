@@ -12,7 +12,6 @@ import SearchBarBig from '../components/searchBar/searchBarBig'
 import useResponsive from '../components/useResponsive'
 
 const Index: NextPage = ({ top, book, info }: any) => {
-    const { responsive } = useResponsive()
 
     return (
         <div>
@@ -24,7 +23,7 @@ const Index: NextPage = ({ top, book, info }: any) => {
 
                 <div className={style.home}>
 
-                    {responsive && <SearchBarBig />}
+                    <SearchBarBig />
 
 
                     <div className={style.hold}>
@@ -43,8 +42,8 @@ const Index: NextPage = ({ top, book, info }: any) => {
                     </div>
 
                     <div className={style.more}>
-                        <h4>Quieres ver más?</h4>
-                        <Link href="/mangas"><a>Entra aquí <AiFillCaretRight /></a></Link>
+                        <h4>Want to see more?</h4>
+                        <Link href="/mangas"><a>Go to mangas <AiFillCaretRight /></a></Link>
                     </div>
 
                 </div>
@@ -62,7 +61,7 @@ export const getStaticProps: GetStaticProps = async () => {
     const topRes = await fetch('https://api.jikan.moe/v4/top/manga?limit=6')
     const top = await topRes.json();
 
-    const infoRes = await fetch("https://api.jikan.moe/v4/manga?order_by=rank&limit=6&sfw=true")
+    const infoRes = await fetch("https://api.jikan.moe/v4/manga?order_by=score&limit=6&sfw=true")
     const info = await infoRes.json()
 
     const bookRes = await fetch("https://api.jikan.moe/v4/manga?order_by=popularity")
