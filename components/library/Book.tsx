@@ -56,7 +56,7 @@ function Book(
                     <div className={style.chapters}>
                         {chapters
                             ? <h2>Chapters {chapters}</h2>
-                            : <h2>Couldn't find chapters</h2>
+                            : <h2>{`Couldn't find chapters`}</h2>
                         }
                     </div>
                 </span>
