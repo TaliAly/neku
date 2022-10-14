@@ -50,8 +50,8 @@ function Modal({ setCloseModal }: any) {
                         <>
                             <p onClick={() => setIsEnabled(!isEnabled)}>
                                 {isEnabled ?
-                                    <> Día <MdWbSunny /> </> :
-                                    <> Noche <BsFillMoonFill /> </>}
+                                    <> Light <MdWbSunny /> </> :
+                                    <> Dark <BsFillMoonFill /> </>}
                             </p>
 
                             <Link href="/mangas"><a> Mangas <AiFillBook /> </a></Link>
