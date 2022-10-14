@@ -33,6 +33,9 @@ const Index: NextPage = ({ top, book, info }: any) => {
 
                         <div className={style.hold_margin}>
                             <Library data={info.data} type="info" />
+                        </div>
+
+                        <div className={style.hold_margin}>
 
                             <h3>Popular</h3>
                             <Library data={book.data} />

@@ -10,7 +10,7 @@
 
 .mangas {
 
-    padding: 1rem 0;
+    padding: 2rem 0;
 
     h3 {
         margin-bottom: 1.3rem;
@@ -32,37 +32,28 @@
         }
     }
 
-    .sticky {
+    .genres {
+
+        background-color: var(--fg-comp);
+        border-radius: 10px;
+        color: var(--color);
+        margin: 0 0 0 .5rem;
+
+
 
         &>div {
             .genres_holder {
 
                 display: flex;
-                flex-direction: column;
+                flex-wrap: wrap;
                 gap: 5px;
-                background-color: var(--fg-comp);
-                padding: 1rem .7rem;
-                border-radius: 10px;
-                height: 85vh;
-                overflow-y: scroll;
-                color: var(--color);
-
-                &::-webkit-scrollbar {
-                    width: .5em;
-                }
-
-                &::-webkit-scrollbar-track {
-                    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                }
-
-                &::-webkit-scrollbar-thumb {
-                    background-color: darkgrey;
-                }
+                padding: 0 .7rem;
 
                 p {
                     @include hover();
                     font-size: 13px;
                     display: inline-block;
+                    background-color: var(--fg);
                     padding: .5rem;
                     margin: 0;
                     border-radius: 10px;

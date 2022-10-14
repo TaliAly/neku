@@ -1,4 +1,4 @@
-import { GetServerSideProps, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import style from "./index.module.scss"
 import { useRouter } from "next/router";
 import { BookInfo } from "../../components/Type";
@@ -59,10 +59,11 @@ const Mangas = ({ resMangas, resGenres }: Props) => {
 
                 <div className={style.mangas_grid}>
 
-                    <div className={style.sticky}>
+                    <div className={style.genres}>
                         <div>
+                            <h3>genres</h3>
+
                             <div className={style.genres_holder}>
-                                <h3>genres</h3>
                                 {
                                     genres?.map((target: any) => {
                                         return <p key={target.mal_id}>
