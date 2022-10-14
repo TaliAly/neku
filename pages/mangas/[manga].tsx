@@ -57,6 +57,9 @@ function Manga({ data }: PropsData) {
                             chapters={chapters}
                             status={status}
                             background={""}
+                            volumes={volumes}
+                            score={score}
+                            rank={rank}
                             images={{
                                 webp: {
                                     image_url: "",
@@ -64,9 +67,7 @@ function Manga({ data }: PropsData) {
                                     large_image_url: ""
                                 }
                             }}
-                            volumes={volumes}
-                            score={score}
-                            rank={rank}
+
                         />
                     </>
                     || <DeadEnd />

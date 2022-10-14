@@ -47,9 +47,10 @@ function Book(
 
                 <span>
                     <div className={style.status}>
-                        <p> Rank: {rank}</p>
+                        <p>Rank: {rank || 0}</p>
                         <p>Score: {score || 0}</p>
-                        <p>status: {status}</p>
+                        <p>status: {status || 0}</p>
+                        <p>Volumes: {volumes || 0}</p>
                     </div>
 
 

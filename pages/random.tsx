@@ -16,7 +16,9 @@ export default function Random({ data }: PropsData) {
         title,
         volumes,
         title_japanese,
-        chapters } = data.data;
+        chapters,
+        rank,
+        score } = data.data;
 
 
     return (
@@ -56,7 +58,10 @@ export default function Random({ data }: PropsData) {
                                 large_image_url: ""
                             }
                         }}
-                        volumes={volumes} />
+                        volumes={volumes}
+                        rank={rank}
+                        score={score}
+                    />
                 </>
                 || <DeadEnd />
             }
