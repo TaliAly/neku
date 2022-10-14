@@ -1,8 +1,7 @@
 .paginations {
     display: flex;
     justify-content: center;
-    margin: 0 2rem 1rem 2rem;
-    color: var(--color);
+    margin: 1.5rem 2rem 1.5rem 2rem;
 
     &>div {
         display: flex;
@@ -27,6 +26,8 @@
                 border-radius: 0 10px 10px 0;
             }
 
+            color: var(--color);
+
             border-radius: 5px;
             display: inline-flex;
             justify-content: center;
@@ -39,9 +40,10 @@
         }
 
         .active {
-            background-color: var(--bg-comp);
+            background-color: transparent;
             width: 40px;
-            outline: solid #fff 2px;
+            color: inherit;
+            border: 2px solid var(--fg);
         }
     }
 

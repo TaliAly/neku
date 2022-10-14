@@ -1,4 +1,4 @@
-import { Router, useRouter } from "next/router"
+import { useRouter } from "next/router"
 import dynamic from "next/dynamic"
 import { useEffect, useState } from "react"
 import { GetServerSideProps } from "next"
@@ -54,8 +54,10 @@ function Search({ data }: PropsData) {
                     (!!query?.search)
                         ?
                         <>
-                            <h2>Buscaste por: {query?.search}</h2>
-                            <Library data={getData.data} />
+                            <span>
+                                <h2>Buscaste por: {query?.search}</h2>
+                            </span>
+                            <Library data={getData.data} type="info" />
 
                             {
                                 (fetchData?.last_visible_page >= 2)
